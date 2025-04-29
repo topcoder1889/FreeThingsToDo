@@ -6,48 +6,117 @@ const continents = [
   {
     name: 'Europe',
     countries: [
-      'France', 'Italy', 'Spain', 'United Kingdom', 'Germany', 'Greece', 'Portugal',
-      'Netherlands', 'Switzerland', 'Austria', 'Croatia', 'Czech Republic', 'Ireland',
-      'Turkey', 'Sweden', 'Norway', 'Denmark', 'Hungary', 'Iceland', 'Belgium'
-    ]
+      'France',
+      'Italy',
+      'Spain',
+      'United Kingdom',
+      'Germany',
+      'Greece',
+      'Portugal',
+      'Netherlands',
+      'Switzerland',
+      'Austria',
+      'Croatia',
+      'Czech Republic',
+      'Ireland',
+      'Turkey',
+      'Sweden',
+      'Norway',
+      'Denmark',
+      'Hungary',
+      'Iceland',
+      'Belgium',
+    ],
   },
   {
     name: 'Asia',
     countries: [
-      'Japan', 'Thailand', 'Vietnam', 'Indonesia', 'China', 'India', 'Singapore',
-      'Malaysia', 'South Korea', 'Philippines', 'Taiwan', 'UAE', 'Nepal', 'Cambodia',
-      'Sri Lanka', 'Jordan', 'Israel', 'Maldives', 'Qatar', 'Laos'
-    ]
+      'Japan',
+      'Thailand',
+      'Vietnam',
+      'Indonesia',
+      'China',
+      'India',
+      'Singapore',
+      'Malaysia',
+      'South Korea',
+      'Philippines',
+      'Taiwan',
+      'UAE',
+      'Nepal',
+      'Cambodia',
+      'Sri Lanka',
+      'Jordan',
+      'Israel',
+      'Maldives',
+      'Qatar',
+      'Laos',
+    ],
   },
   {
     name: 'North & Central America',
     countries: [
-      'United States', 'Mexico', 'Canada', 'Costa Rica', 'Cuba', 'Dominican Republic',
-      'Jamaica', 'Bahamas', 'Panama', 'Puerto Rico', 'Belize', 'Guatemala', 'Honduras',
-      'Nicaragua', 'El Salvador'
-    ]
+      'United States',
+      'Mexico',
+      'Canada',
+      'Costa Rica',
+      'Cuba',
+      'Dominican Republic',
+      'Jamaica',
+      'Bahamas',
+      'Panama',
+      'Puerto Rico',
+      'Belize',
+      'Guatemala',
+      'Honduras',
+      'Nicaragua',
+      'El Salvador',
+    ],
   },
   {
     name: 'South America',
     countries: [
-      'Brazil', 'Peru', 'Argentina', 'Colombia', 'Chile', 'Ecuador', 'Bolivia',
-      'Uruguay', 'Venezuela', 'Paraguay'
-    ]
+      'Brazil',
+      'Peru',
+      'Argentina',
+      'Colombia',
+      'Chile',
+      'Ecuador',
+      'Bolivia',
+      'Uruguay',
+      'Venezuela',
+      'Paraguay',
+    ],
   },
   {
     name: 'Africa',
     countries: [
-      'South Africa', 'Morocco', 'Egypt', 'Kenya', 'Tanzania', 'Tunisia', 'Botswana',
-      'Namibia', 'Zimbabwe', 'Mauritius', 'Seychelles'
-    ]
+      'South Africa',
+      'Morocco',
+      'Egypt',
+      'Kenya',
+      'Tanzania',
+      'Tunisia',
+      'Botswana',
+      'Namibia',
+      'Zimbabwe',
+      'Mauritius',
+      'Seychelles',
+    ],
   },
   {
     name: 'Oceania',
     countries: [
-      'Australia', 'New Zealand', 'Fiji', 'French Polynesia', 'Hawaii', 'Cook Islands',
-      'Samoa', 'Vanuatu'
-    ]
-  }
+      'Australia',
+      'New Zealand',
+      'Fiji',
+      'French Polynesia',
+      'Hawaii',
+      'Cook Islands',
+      'Samoa',
+      'Vanuatu',
+    ],
+  },
 ];
 
 export default function CountriesByContinent() {
@@ -56,19 +125,21 @@ export default function CountriesByContinent() {
       <div className="container">
         <div className="section-heading mb-12">
           <h3 className="text-3xl font-semibold mb-4">Browse By Country</h3>
-          <p className="text-gray-600">Find free activities in top travel destinations around the world</p>
+          <p className="text-gray-600">
+            Find free activities in top travel destinations around the world
+          </p>
         </div>
-        
+
         <div className="continents-container flex flex-wrap gap-12 mt-12">
-          {continents.map((continent) => (
+          {continents.map(continent => (
             <div key={continent.name} className="continent flex-1 min-w-[280px]">
               <h4 className="text-xl font-semibold mb-6 pb-2 border-b-2 border-primary text-dark">
                 {continent.name}
               </h4>
               <ul className="country-list columns-2 gap-8 list-none">
-                {continent.countries.map((country) => (
+                {continent.countries.map(country => (
                   <li key={country} className="mb-3 break-inside-avoid">
-                    <Link 
+                    <Link
                       href={`/country/${country.toLowerCase().replace(/\s+/g, '-')}`}
                       className="text-[#555] hover:text-primary transition-colors duration-300 flex items-center text-[0.95rem]"
                     >
@@ -78,7 +149,7 @@ export default function CountriesByContinent() {
                   </li>
                 ))}
                 <li className="mb-3 break-inside-avoid">
-                  <Link 
+                  <Link
                     href={`/countries/${continent.name.toLowerCase().replace(/\s+/g, '-')}`}
                     className="text-[#555] hover:text-primary transition-colors duration-300 flex items-center text-[0.95rem]"
                   >
@@ -90,16 +161,13 @@ export default function CountriesByContinent() {
             </div>
           ))}
         </div>
-        
+
         <div className="text-center mt-12">
-          <Link 
-            href="/countries" 
-            className="btn btn-outline"
-          >
+          <Link href="/countries" className="btn btn-outline">
             See all countries
           </Link>
         </div>
       </div>
     </section>
   );
-} 
+}

@@ -23,7 +23,7 @@ const cities = [
   { name: 'Rome', activities: 145, rating: 4.8 },
   { name: 'Osaka', activities: 98, rating: 4.6 },
   { name: 'Vienna', activities: 116, rating: 4.7 },
-  { name: 'Prague', activities: 122, rating: 4.7 }
+  { name: 'Prague', activities: 122, rating: 4.7 },
 ];
 
 export default function FeaturedCities() {
@@ -34,7 +34,7 @@ export default function FeaturedCities() {
       const scrollAmount = 400; // Adjust this value based on your card width
       carouselRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
     }
   };
@@ -48,22 +48,22 @@ export default function FeaturedCities() {
             Explore free activities in these popular global destinations
           </p>
         </div>
-        
+
         <div className="cities-carousel-container relative">
           <h4 className="text-xl font-semibold mb-6">Popular Cities</h4>
-          
-          <div 
+
+          <div
             ref={carouselRef}
             className="cities-carousel flex overflow-x-auto gap-8 px-2 py-4 scroll-smooth scrollbar-thin scrollbar-hide"
           >
-            {cities.map((city) => (
+            {cities.map(city => (
               <div
                 key={city.name}
                 className="city-card min-w-[320px] bg-white rounded-2xl shadow-custom hover:-translate-y-1 transition-transform duration-300"
               >
                 <div
-                    className="city-image w-[400px] h-[250px] bg-cover bg-center"
-                    style={{ backgroundImage: "url('/api/placeholder/400/250')" }}
+                  className="city-image w-[400px] h-[250px] bg-cover bg-center"
+                  style={{ backgroundImage: "url('/api/placeholder/400/250')" }}
                 ></div>
                 <div className="p-6">
                   <h4 className="text-xl font-semibold mb-3">{city.name}</h4>
@@ -100,4 +100,4 @@ export default function FeaturedCities() {
       </div>
     </section>
   );
-} 
+}

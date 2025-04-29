@@ -11,11 +11,15 @@ export default function Navbar({ variant = 'default' }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className={`w-full z-[100] ${variant === 'overlay' ? 'absolute top-0 left-0 py-5' : 'bg-white shadow-[0_2px_10px_rgba(0,0,0,0.05)] sticky top-0'}`}>
+    <header
+      className={`w-full z-[100] ${variant === 'overlay' ? 'absolute top-0 left-0 py-5' : 'bg-white shadow-[0_2px_10px_rgba(0,0,0,0.05)] sticky top-0'}`}
+    >
       <div className="w-[90%] max-w-[1340px] mx-auto px-5">
         <nav className="flex justify-between items-center py-4 relative">
           <Link href="/" className="flex items-center gap-2 no-underline">
-            <h1 className={`m-0 text-[1.75rem] font-bold uppercase tracking-[1px] ${variant === 'overlay' ? 'text-white' : 'text-dark'}`}>
+            <h1
+              className={`m-0 text-[1.75rem] font-bold uppercase tracking-[1px] ${variant === 'overlay' ? 'text-white' : 'text-dark'}`}
+            >
               FreeThingsToDo
             </h1>
           </Link>
@@ -24,22 +28,34 @@ export default function Navbar({ variant = 'default' }: NavbarProps) {
           <div className="hidden md:flex items-center gap-10">
             <ul className="flex gap-10 list-none">
               <li>
-                <Link href="/" className={`hover:text-accent transition-all duration-300 text-[0.95rem] font-medium tracking-[0.5px] no-underline ${variant === 'overlay' ? 'text-white' : 'text-dark'}`}>
+                <Link
+                  href="/"
+                  className={`hover:text-accent transition-all duration-300 text-[0.95rem] font-medium tracking-[0.5px] no-underline ${variant === 'overlay' ? 'text-white' : 'text-dark'}`}
+                >
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/browse-by-city" className={`hover:text-accent transition-all duration-300 text-[0.95rem] font-medium tracking-[0.5px] no-underline ${variant === 'overlay' ? 'text-white' : 'text-dark'}`}>
+                <Link
+                  href="/browse-by-city"
+                  className={`hover:text-accent transition-all duration-300 text-[0.95rem] font-medium tracking-[0.5px] no-underline ${variant === 'overlay' ? 'text-white' : 'text-dark'}`}
+                >
                   Browse by City
                 </Link>
               </li>
               <li>
-                <Link href="/submit-activity" className={`hover:text-accent transition-all duration-300 text-[0.95rem] font-medium tracking-[0.5px] no-underline ${variant === 'overlay' ? 'text-white' : 'text-dark'}`}>
+                <Link
+                  href="/submit-activity"
+                  className={`hover:text-accent transition-all duration-300 text-[0.95rem] font-medium tracking-[0.5px] no-underline ${variant === 'overlay' ? 'text-white' : 'text-dark'}`}
+                >
                   Submit Activity
                 </Link>
               </li>
               <li>
-                <Link href="/about" className={`hover:text-accent transition-all duration-300 text-[0.95rem] font-medium tracking-[0.5px] no-underline ${variant === 'overlay' ? 'text-white' : 'text-dark'}`}>
+                <Link
+                  href="/about"
+                  className={`hover:text-accent transition-all duration-300 text-[0.95rem] font-medium tracking-[0.5px] no-underline ${variant === 'overlay' ? 'text-white' : 'text-dark'}`}
+                >
                   About
                 </Link>
               </li>
@@ -51,8 +67,8 @@ export default function Navbar({ variant = 'default' }: NavbarProps) {
               <Link
                 href="/login"
                 className={`px-6 py-3 rounded-full border transition-all duration-300 text-[0.9rem] font-medium tracking-[0.5px] no-underline ${
-                  variant === 'overlay' 
-                    ? 'border-white text-white bg-white/10 backdrop-blur-sm hover:bg-white hover:text-primary' 
+                  variant === 'overlay'
+                    ? 'border-white text-white bg-white/10 backdrop-blur-sm hover:bg-white hover:text-primary'
                     : 'border-primary text-primary hover:bg-primary hover:text-white'
                 }`}
               >
@@ -76,9 +92,15 @@ export default function Navbar({ variant = 'default' }: NavbarProps) {
             className="md:hidden flex flex-col justify-between w-[30px] h-[21px] cursor-pointer z-[100]"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            <span className={`block w-full h-[3px] rounded-[3px] transition-all duration-300 ${isMenuOpen ? 'translate-y-[9px] rotate-45' : ''} ${variant === 'overlay' ? 'bg-white' : 'bg-dark'}`} />
-            <span className={`block w-full h-[3px] rounded-[3px] transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''} ${variant === 'overlay' ? 'bg-white' : 'bg-dark'}`} />
-            <span className={`block w-full h-[3px] rounded-[3px] transition-all duration-300 ${isMenuOpen ? '-translate-y-[9px] -rotate-45' : ''} ${variant === 'overlay' ? 'bg-white' : 'bg-dark'}`} />
+            <span
+              className={`block w-full h-[3px] rounded-[3px] transition-all duration-300 ${isMenuOpen ? 'translate-y-[9px] rotate-45' : ''} ${variant === 'overlay' ? 'bg-white' : 'bg-dark'}`}
+            />
+            <span
+              className={`block w-full h-[3px] rounded-[3px] transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''} ${variant === 'overlay' ? 'bg-white' : 'bg-dark'}`}
+            />
+            <span
+              className={`block w-full h-[3px] rounded-[3px] transition-all duration-300 ${isMenuOpen ? '-translate-y-[9px] -rotate-45' : ''} ${variant === 'overlay' ? 'bg-white' : 'bg-dark'}`}
+            />
           </button>
         </nav>
 
@@ -91,22 +113,34 @@ export default function Navbar({ variant = 'default' }: NavbarProps) {
           <div className="w-[90%] max-w-[1340px] mx-auto px-5 h-full flex flex-col justify-start pt-20">
             <ul className="flex flex-col gap-6 list-none">
               <li>
-                <Link href="/" className={`hover:text-accent transition-all duration-300 text-[0.95rem] font-medium tracking-[0.5px] no-underline ${variant === 'overlay' ? 'text-white' : 'text-dark'}`}>
+                <Link
+                  href="/"
+                  className={`hover:text-accent transition-all duration-300 text-[0.95rem] font-medium tracking-[0.5px] no-underline ${variant === 'overlay' ? 'text-white' : 'text-dark'}`}
+                >
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/browse-by-city" className={`hover:text-accent transition-all duration-300 text-[0.95rem] font-medium tracking-[0.5px] no-underline ${variant === 'overlay' ? 'text-white' : 'text-dark'}`}>
+                <Link
+                  href="/browse-by-city"
+                  className={`hover:text-accent transition-all duration-300 text-[0.95rem] font-medium tracking-[0.5px] no-underline ${variant === 'overlay' ? 'text-white' : 'text-dark'}`}
+                >
                   Browse by City
                 </Link>
               </li>
               <li>
-                <Link href="/submit-activity" className={`hover:text-accent transition-all duration-300 text-[0.95rem] font-medium tracking-[0.5px] no-underline ${variant === 'overlay' ? 'text-white' : 'text-dark'}`}>
+                <Link
+                  href="/submit-activity"
+                  className={`hover:text-accent transition-all duration-300 text-[0.95rem] font-medium tracking-[0.5px] no-underline ${variant === 'overlay' ? 'text-white' : 'text-dark'}`}
+                >
                   Submit Activity
                 </Link>
               </li>
               <li>
-                <Link href="/about" className={`hover:text-accent transition-all duration-300 text-[0.95rem] font-medium tracking-[0.5px] no-underline ${variant === 'overlay' ? 'text-white' : 'text-dark'}`}>
+                <Link
+                  href="/about"
+                  className={`hover:text-accent transition-all duration-300 text-[0.95rem] font-medium tracking-[0.5px] no-underline ${variant === 'overlay' ? 'text-white' : 'text-dark'}`}
+                >
                   About
                 </Link>
               </li>
@@ -139,4 +173,4 @@ export default function Navbar({ variant = 'default' }: NavbarProps) {
       </div>
     </header>
   );
-} 
+}
