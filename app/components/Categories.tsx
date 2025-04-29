@@ -102,17 +102,16 @@ export default function Categories() {
     const [showAll, setShowAll] =useState(false);
 
     return (
-        <section className='py-20 bg-gray-59'>
+        <section className='py-20 bg-gray-50 mb-24'>
             <div className='container'>
-                <div className='section-heading text-center mb-12'>
-                    <h3 className='text-3xl font-semibold mb-4'>Browse By Category</h3>
+                <div className='section-heading mb-12'>
+                    <h3 className='text-[2.2rem] font-semibold mb-4'>Browse By Category</h3>
                     <p className='text-gray-600'>Find free activities based on your interests</p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
                     {categories.map((category, index) => (
-                        <div key={index} className="category-card bg-white p-10 px-6 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.08)]
-                        hover:shadow-[0_15px_30px_rgba(0,0,0,0.12)] hover:-transalte-y-1 transition-all duration-300 text-center h-full">
+                        <div key={index} className="category-card bg-white p-10 px-6 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300 text-center h-full">
                             <div className='category-icon w-20 h-20 mx-auto mb-6 flex items-center justify-center rounded-full bg-primary/10
                             text-primary text-4xl'>
                                 {category.icon}
@@ -123,10 +122,9 @@ export default function Categories() {
                     ))}
                 </div>
 
-                <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 ${showAll ? 'block' : 'hidden'}`}>
+                <div className={`${showAll ? 'block' : 'hidden'}`}>
                     {additionalCategories.map((category, index) => (
-                        <div key={index} className='category-card bg-white p-10 px-6 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.08)]
-                        hover:shadow-[0_15px_30px_rgba(0,0,0,0.12)] hover: -translate-y-1 transition-all duration-300 text-center h-full'>
+                        <div key={index} className='category-card bg-white p-10 px-6 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300 text-center h-full'>
                             <div className='category-icon w-20 h-20 mx-auto mb-6 flex items-center justify-center rounded-full bg-primary/10 text-primary text-4xl'>
                                 {category.icon}
                             </div>

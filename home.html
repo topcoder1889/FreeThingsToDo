@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Things To Do | Discover No-Cost Activities Worldwide</title>
+    <style>
+        /* Updated Color Scheme */
+:root {
+    --primary: #3a8bbb;
+    --secondary: #2c3e50;
+    --accent: #f5f5f5;
+    --light: #ffffff;
+    --dark: #333333;
+    --success: #6bc7b8;
+    --font-main: 'Inter', 'Segoe UI', sans-serif;
+    --box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    line-height: 1.6;
+    color: var(--dark);
+    background-color: #ffffff;
+    font-weight: 400;
+    overflow-x: hidden;
+}
+
+body.menu-open {
+    overflow: hidden;
+}
+
+.container {
+    width: 90%;
+    max-width: 1340px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header Styling */
+header {
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 20px 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    position: relative;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+.logo h1 {
+    font-size: 1.75rem;
+    color: white;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.hamburger span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+nav {
+    transition: all 0.3s ease;
+}
+
+nav ul {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: var(--transition);
+    letter-spacing: 0.5px;
+}
+
+nav a:hover {
+    color: var(--accent);
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-outline {
+    border: 1px solid white;
+    color: white;
+    background-color: rgba(255,255,255,0.1);
+    backdrop-filter: blur(5px);
+}
+
+.btn-outline:hover {
+    background-color: white;
+    color: var(--primary);
+}
+
+.btn-primary {
+    background-color: white;
+    color: var(--primary);
+    border: 1px solid white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=3000&auto=format&fit=crop') center/cover no-repeat;
+    color: white;
+    padding: 12rem 0 6rem;
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+}
+
+.hero h2 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    max-width: 700px;
+    margin: 0 auto 2.5rem;
+    font-weight: 300;
+}
+
+.search-container {
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    gap: 0;
+    background-color: white;
+    border-radius: 50px;
+    padding: 0.5rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.search-container input {
+    flex: 1;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    background: transparent;
+}
+
+.search-container button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 0.85rem 2rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.search-container button:hover {
+    background-color: #2c7aa8;
+}
+
+/* Section Headings */
+.section-heading {
+    text-align: left;
+    margin-bottom: 2.5rem;
+}
+
+.section-heading h3 {
+    font-size: 2.2rem;
+    color: var(--dark);
+    margin-bottom: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.section-heading p {
+    color: #666;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+/* Featured Cities & Categories */
+.featured-cities,
+.categories {
+    margin-bottom: 6rem;
+    padding: 2rem 0;
+}
+
+.categories {
+    background-color: #f9f9f9;
+    padding: 4rem 0;
+}
+
+.cities-grid,
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.city-card,
+.category-card {
+    background-color: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+    height: 100%;
+}
+
+.city-card:hover,
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+}
+
+.city-image {
+    height: 220px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.city-info {
+    padding: 1.5rem;
+}
+
+.city-info h4 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: var(--dark);
+    font-weight: 600;
+}
+
+.city-stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 1rem;
+}
+
+.view-more {
+    font-weight: 500;
+    color: var(--primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+/* Categories Section */
+.category-card {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    border-radius: 16px;
+    background-color: white;
+    transition: var(--transition);
+}
+
+.category-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+    background: rgba(58, 139, 187, 0.1);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.category-card h4 {
+    margin-bottom: 0.75rem;
+    color: var(--dark);
+    font-weight: 600;
+}
+
+.category-card p {
+    font-size: 0.95rem;
+    color: #666;
+}
+
+/* Carousel Controls */
+.carousel-controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.carousel-control {
+    background-color: white;
+    color: var(--dark);
+    border: 1px solid #eee;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.carousel-control:hover {
+    background-color: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* Recent Activities */
+.activity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.activity-card {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    height: 100%;
+    max-width: 100%;
+}
+
+.activity-image {
+    width: 100%;
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+}
+
+.activity-details {
+    padding: 1.25rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.activity-category {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background-color: rgba(58, 139, 187, 0.1);
+    border-radius: 50px;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+    color: var(--primary);
+    font-weight: 500;
+}
+
+.activity-details h4 {
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+    color: var(--dark);
+    font-weight: 600;
+}
+
+.activity-location {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.activity-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    color: #f5a623;
+    margin-bottom: 1.5rem;
+}
+
+/* How It Works */
+.how-it-works {
+    padding: 6rem 0;
+    background-color: #f9f9f9;
+    margin-bottom: 6rem;
+}
+
+.steps {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 3rem;
+}
+
+.step {
+    text-align: center;
+    max-width: 280px;
+}
+
+.step-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: white;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin: 0 auto 2rem;
+    box-shadow: var(--box-shadow);
+    border: 1px solid #f0f0f0;
+    font-weight: 600;
+}
+
+.step h4 {
+    margin-bottom: 1rem;
+    color: var(--dark);
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+/* Newsletter */
+.newsletter {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=3000&auto=format&fit=crop') center/cover no-repeat;
+    color: white;
+    padding: 6rem 0;
+    margin-bottom: 6rem;
+    text-align: center;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.newsletter h3 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.newsletter p {
+    max-width: 700px;
+    margin: 0 auto 2.5rem;
+    font-weight: 300;
+    font-size: 1.1rem;
+}
+
+.newsletter-form {
+    display: flex;
+    max-width: 550px;
+    margin: 0 auto;
+    gap: 0.5rem;
+    position: relative;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: 50px;
+    outline: none;
+    font-size: 1rem;
+}
+
+.newsletter-form button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 1rem 2rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.newsletter-form button:hover {
+    background-color: #2c7aa8;
+}
+
+/* Footer */
+footer {
+    background-color: #f9f9f9;
+    padding: 6rem 0 2rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 4rem;
+    margin-bottom: 4rem;
+}
+
+.footer-column h4 {
+    color: var(--dark);
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    position: relative;
+}
+
+.footer-column h4:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--primary);
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-column a {
+    text-decoration: none;
+    color: #666;
+    transition: var(--transition);
+    font-size: 0.95rem;
+}
+
+.footer-column a:hover {
+    color: var(--primary);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dark);
+    transition: var(--transition);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.social-icon:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
+/* Cities Carousel */
+.cities-carousel-container {
+    margin-top: 2rem;
+    position: relative;
+}
+
+.more-cities-title {
+    margin-bottom: 1.5rem;
+    color: var(--dark);
+    font-size: 1.4rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cities-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    gap: 2rem;
+    padding: 1rem 0.5rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.cities-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.cities-carousel .city-card {
+    flex: 0 0 320px;
+    margin-bottom: 0.5rem;
+}
+
+/* Countries by Continent */
+.countries-section {
+    margin-bottom: 6rem;
+    padding: 4rem 0;
+    background-color: #f9f9f9;
+    border-radius: 20px;
+}
+
+.continents-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.continent {
+    flex: 1;
+    min-width: 280px;
+}
+
+.continent h4 {
+    font-size: 1.3rem;
+    color: var(--dark);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary);
+    font-weight: 600;
+}
+
+.country-list {
+    list-style: none;
+    column-count: 2;
+    column-gap: 2rem;
+}
+
+.country-list li {
+    margin-bottom: 0.75rem;
+    break-inside: avoid;
+}
+
+.country-list a {
+    text-decoration: none;
+    color: #555;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    font-size: 0.95rem;
+}
+
+.country-list a:hover {
+    color: var(--primary);
+}
+
+.country-list a::before {
+    content: "•";
+    margin-right: 0.75rem;
+    color: var(--primary);
+}
+
+.more-link {
+    font-weight: normal;
+    color: var(--primary);
+}
+
+.more-link::before {
+    content: "";
+    margin-right: 0;
+}
+
+.see-all-countries {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+/* Adding styles from the LORDSKY design */
+.show-more-btn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 0.85rem 1.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    margin: 0 auto;
+    display: inline-block;
+}
+
+.show-more-btn:hover {
+    background-color: #2c7aa8;
+}
+
+/* Media Queries */
+@media (max-width: 992px) {
+    .hero h2 {
+        font-size: 2.75rem;
+    }
+    
+    .steps {
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 850px) {
+    .hamburger {
+        display: flex;
+    }
+    
+    nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 250px;
+        height: 100vh;
+        background-color: var(--dark);
+        padding: 80px 30px 30px;
+        z-index: 99;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+    }
+    
+    nav.active {
+        right: 0;
+    }
+    
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .auth-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .auth-buttons .btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    /* Hamburger animation */
+    .hamburger.active span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+    
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .hamburger.active span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 10rem 0 5rem;
+    }
+    
+    .hero h2 {
+        font-size: 2.25rem;
+    }
+    
+    .activity-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .steps {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .continents-container {
+        flex-direction: column;
+    }
+    
+    .country-list {
+        column-count: 1;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero h2 {
+        font-size: 2rem;
+    }
+    
+    .search-container {
+        flex-direction: column;
+        border-radius: 16px;
+    }
+    
+    .search-container input {
+        width: 100%;
+    }
+    
+    .search-container button {
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <a href="#" class="logo">
+                    <h1>FreeThingsToDo</h1>
+                </a>
+                
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Browse by City</a></li>
+                        <li><a href="#">Submit Activity</a></li>
+                        <li><a href="#">About</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="auth-buttons">
+                    <a href="#" class="btn btn-outline">Log In</a>
+                    <a href="#" class="btn btn-primary">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Discover Free Things To Do Anywhere</h2>
+            <p>Explore thousands of cost-free activities, attractions, and events in cities around the world.</p>
+            
+            <div class="search-container">
+                <input type="text" placeholder="Enter a city name...">
+                <button>Find Activities</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Featured Cities -->
+    <section class="featured-cities">
+        <div class="container">
+            <div class="section-heading">
+                <h3>Top 20 Cities Worldwide</h3>
+                <p>Explore free activities in these popular global destinations</p>
+            </div>
+            
+            <!-- Scrollable cities carousel -->
+            <div class="cities-carousel-container">
+                <h4 class="more-cities-title">Popular Cities</h4>
+                <div class="cities-carousel">
+                    <div class="city-card">
+                        <div class="city-image" style="background-image: url('/api/placeholder/400/250')"></div>
+                        <div class="city-info">
+                            <h4>Bangkok</h4>
+                            <div class="city-stats">
+                                <span>174 Activities</span>
+                                <span>4.7 Rating</span>
+                            </div>
+                            <a href="#" class="view-more">Explore →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="city-card">
+                        <div class="city-image" style="background-image: url('/api/placeholder/400/250')"></div>
+                        <div class="city-info">
+                            <h4>Paris</h4>
+                            <div class="city-stats">
+                                <span>197 Activities</span>
+                                <span>4.8 Rating</span>
+                            </div>
+                            <a href="#" class="view-more">Explore →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="city-card">
+                        <div class="city-image" style="background-image: url('/api/placeholder/400/250')"></div>
+                        <div class="city-info">
+                            <h4>London</h4>
+                            <div class="city-stats">
+                                <span>212 Activities</span>
+                                <span>4.7 Rating</span>
+                            </div>
+                            <a href="#" class="view-more">Explore →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="city-card">
+                        <div class="city-image" style="background-image: url('/api/placeholder/400/250')"></div>
+                        <div class="city-info">
+                            <h4>Dubai</h4>
+                            <div class="city-stats">
+                                <span>134 Activities</span>
+                                <span>4.6 Rating</span>
+                            </div>
+                            <a href="#" class="view-more">Explore →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="city-card">
+                        <div class="city-image" style="background-image: url('/api/placeholder/400/250')"></div>
+                        <div class="city-info">
+                            <h4>Singapore</h4>
+                            <div class="city-stats">
+                                <span>128 Activities</span>
+                                <span>4.8 Rating</span>
+                            </div>
+                            <a href="#" class="view-more">Explore →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="city-card">
+                        <div class="city-image" style="background-image: url('/api/placeholder/400/250')"></div>
+                        <div class="city-info">
+                            <h4>New York</h4>
+                            <div class="city-stats">
+                                <span>205 Activities</span>
+                                <span>4.7 Rating</span>
+                            </div>
+                            <a href="#" class="view-more">Explore →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="city-card">
+                        <div class="city-image" style="background-image: url('/api/placeholder/400/250')"></div>
+                        <div class="city-info">
+                            <h4>Kuala Lumpur</h4>
+                            <div class="city-stats">
+                                <span>115 Activities</span>
+                                <span>4.5 Rating</span>
+                            </div>
+                            <a href="#" class="view-more">Explore →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="city-card">
+                        <div class="city-image" style="background-image: url('/api/placeholder/400/250')"></div>
+                        <div class="city-info">
+                            <h4>Tokyo</h4>
+                            <div class="city-stats">
+                                <span>162 Activities</span>
+                                <span>4.8 Rating</span>
+                            </div>
+                            <a href="#" class="view-more">Explore →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="city-card">
+                        <div class="city-image" style="background-image: url('/api/placeholder/400/250')"></div>
+                        <div class="city-info">
+                            <h4>Istanbul</h4>
+                            <div class="city-stats">
+                                <span>136 Activities</span>
+                                <span>4.7 Rating</span>
+                            </div>
+                            <a href="#" class="view-more">Explore →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="city-card">
+                        <div class="city-image" style="background-image: url('/api/placeholder/400/250')"></div>
+                        <div class="city-info">
+                            <h4>Seoul</h4>
+                            <div class="city-stats">
+                                <span>142 Activities</span>
+                                <span>4.6 Rating</span>
+                            </div>
+                            <a href="#" class="view-more">Explore →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="city-card">
+                        <div class="city-image" style="background-image: url('/api/placeholder/400/250')"></div>
+                        <div class="city-info">
+                            <h4>Hong Kong</h4>
+                            <div class="city-stats">
+                                <span>128 Activities</span>
+                                <span>4.6 Rating</span>
+                            </div>
+                            <a href="#" class="view-more">Explore →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="city-card">
+                        <div class="city-image" style="background-image: url('/api/placeholder/400/250')"></div>
+                        <div class="city-info">
+                            <h4>Barcelona</h4>
+                            <div class="city-stats">
+                                <span>156 Activities</span>
+                                <span>4.7 Rating</span>
+                            </div>
+                            <a href="#" class="view-more">Explore →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="city-card">
+                        <div class="city-image" style="background-image: url('/api/placeholder/400/250')"></div>
+                        <div class="city-info">
+                            <h4>Amsterdam</h4>
+                            <div class="city-stats">
+                                <span>124 Activities</span>
+                                <span>4.7 Rating</span>
+                            </div>
+                            <a href="#" class="view-more">Explore →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="city-card">
+                        <div class="city-image" style="background-image: url('/api/placeholder/400/250')"></div>
+                        <div class="city-info">
+                            <h4>Milan</h4>
+                            <div class="city-stats">
+                                <span>112 Activities</span>
+                                <span>4.5 Rating</span>
+                            </div>
+                            <a href="#" class="view-more">Explore →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="city-card">
+                        <div class="city-image" style="background-image: url('/api/placeholder/400/250')"></div>
+                        <div class="city-info">
+                            <h4>Taipei</h4>
+                            <div class="city-stats">
+                                <span>108 Activities</span>
+                                <span>4.6 Rating</span>
+                            </div>
+                            <a href="#" class="view-more">Explore →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="city-card">
+                        <div class="city-image" style="background-image: url('/api/placeholder/400/250')"></div>
+                        <div class="city-info">
+                            <h4>Rome</h4>
+                            <div class="city-stats">
+                                <span>145 Activities</span>
+                                <span>4.8 Rating</span>
+                            </div>
+                            <a href="#" class="view-more">Explore →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="city-card">
+                        <div class="city-image" style="background-image: url('/api/placeholder/400/250')"></div>
+                        <div class="city-info">
+                            <h4>Osaka</h4>
+                            <div class="city-stats">
+                                <span>98 Activities</span>
+                                <span>4.6 Rating</span>
+                            </div>
+                            <a href="#" class="view-more">Explore →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="city-card">
+                        <div class="city-image" style="background-image: url('/api/placeholder/400/250')"></div>
+                        <div class="city-info">
+                            <h4>Vienna</h4>
+                            <div class="city-stats">
+                                <span>116 Activities</span>
+                                <span>4.7 Rating</span>
+                            </div>
+                            <a href="#" class="view-more">Explore →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="city-card">
+                        <div class="city-image" style="background-image: url('/api/placeholder/400/250')"></div>
+                        <div class="city-info">
+                            <h4>Prague</h4>
+                            <div class="city-stats">
+                                <span>122 Activities</span>
+                                <span>4.7 Rating</span>
+                            </div>
+                            <a href="#" class="view-more">Explore →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-control prev">←</button>
+                    <button class="carousel-control next">→</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Categories -->
+    <section class="categories">
+        <div class="container">
+            <div class="section-heading">
+                <h3>Browse By Category</h3>
+                <p>Find free activities based on your interests</p>
+            </div>
+            
+            <!-- Top 8 most popular categories -->
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">🥾</div>
+                    <h4>Walks & Hiking Trails</h4>
+                    <p>Urban walks, nature trails, and scenic routes</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">🏛️</div>
+                    <h4>Museums & Galleries</h4>
+                    <p>Free entry days and exhibitions</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">🌳</div>
+                    <h4>Parks & Nature</h4>
+                    <p>Outdoor spaces and scenic spots</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">🏖️</div>
+                    <h4>Beaches & Waterfronts</h4>
+                    <p>Public beaches, lake shores, and riverfront areas</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">🎪</div>
+                    <h4>Festivals & Events</h4>
+                    <p>Seasonal celebrations and community gatherings</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">🏙️</div>
+                    <h4>Sightseeing</h4>
+                    <p>Landmarks and attractions</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">🎭</div>
+                    <h4>Arts & Culture</h4>
+                    <p>Performances and cultural events</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">👨‍👩‍👧‍👦</div>
+                    <h4>Family & Kids</h4>
+                    <p>Playgrounds, splash pads, and family activities</p>
+                </div>
+            </div>
+            
+            <!-- Additional categories (initially hidden) -->
+            <div class="additional-categories" style="display: none;">
+                <div class="category-card">
+                    <div class="category-icon">🎵</div>
+                    <h4>Live Music</h4>
+                    <p>Free concerts and performances</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">🏛️</div>
+                    <h4>Historical Sites</h4>
+                    <p>Monuments, historical districts, and heritage locations</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">🛒</div>
+                    <h4>Markets & Street Food</h4>
+                    <p>Farmers markets and craft fairs (free to browse)</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">🎓</div>
+                    <h4>Educational</h4>
+                    <p>Free lectures, workshops, and learning opportunities</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">📸</div>
+                    <h4>Viewpoints & Photography</h4>
+                    <p>Scenic overlooks, skylines, and photo spots</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">⛪</div>
+                    <h4>Religious Sites</h4>
+                    <p>Churches, temples, and places of worship open to visitors</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">🧭</div>
+                    <h4>Self-Guided Tours</h4>
+                    <p>Downloadable walking routes and audio guides</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">🍁</div>
+                    <h4>Seasonal Activities</h4>
+                    <p>Leaf peeping, cherry blossoms, holiday displays</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">📚</div>
+                    <h4>Libraries & Reading Spaces</h4>
+                    <p>Public libraries with free access and programs</p>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">🏀</div>
+                    <h4>Sports & Recreation</h4>
+                    <p>Public courts, fields, and recreational facilities</p>
+                </div>
+            </div>
+            
+            <div class="see-more-categories">
+                <button class="show-more-btn" id="toggleCategories">Show all categories</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Countries by Continent Section -->
+    <section class="countries-section">
+        <div class="container">
+            <div class="section-heading">
+                <h3>Browse By Country</h3>
+                <p>Find free activities in top travel destinations around the world</p>
+            </div>
+            
+            <div class="continents-container">
+                <!-- Europe -->
+                <div class="continent">
+                    <h4>Europe</h4>
+                    <ul class="country-list">
+                        <li><a href="#">France</a></li>
+                        <li><a href="#">Italy</a></li>
+                        <li><a href="#">Spain</a></li>
+                        <li><a href="#">United Kingdom</a></li>
+                        <li><a href="#">Germany</a></li>
+                        <li><a href="#">Greece</a></li>
+                        <li><a href="#">Portugal</a></li>
+                        <li><a href="#">Netherlands</a></li>
+                        <li><a href="#">Switzerland</a></li>
+                        <li><a href="#">Austria</a></li>
+                        <li><a href="#">Croatia</a></li>
+                        <li><a href="#">Czech Republic</a></li>
+                        <li><a href="#">Ireland</a></li>
+                        <li><a href="#">Turkey</a></li>
+                        <li><a href="#">Sweden</a></li>
+                        <li><a href="#">Norway</a></li>
+                        <li><a href="#">Denmark</a></li>
+                        <li><a href="#">Hungary</a></li>
+                        <li><a href="#">Iceland</a></li>
+                        <li><a href="#">Belgium</a></li>
+                        <li><a href="#" class="more-link">More in Europe →</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Asia -->
+                <div class="continent">
+                    <h4>Asia</h4>
+                    <ul class="country-list">
+                        <li><a href="#">Japan</a></li>
+                        <li><a href="#">Thailand</a></li>
+                        <li><a href="#">Vietnam</a></li>
+                        <li><a href="#">Indonesia</a></li>
+                        <li><a href="#">China</a></li>
+                        <li><a href="#">India</a></li>
+                        <li><a href="#">Singapore</a></li>
+                        <li><a href="#">Malaysia</a></li>
+                        <li><a href="#">South Korea</a></li>
+                        <li><a href="#">Philippines</a></li>
+                        <li><a href="#">Taiwan</a></li>
+                        <li><a href="#">UAE</a></li>
+                        <li><a href="#">Nepal</a></li>
+                        <li><a href="#">Cambodia</a></li>
+                        <li><a href="#">Sri Lanka</a></li>
+                        <li><a href="#">Jordan</a></li>
+                        <li><a href="#">Israel</a></li>
+                        <li><a href="#">Maldives</a></li>
+                        <li><a href="#">Qatar</a></li>
+                        <li><a href="#">Laos</a></li>
+                        <li><a href="#" class="more-link">More in Asia →</a></li>
+                    </ul>
+                </div>
+                
+                <!-- North & Central America -->
+                <div class="continent">
+                    <h4>North & Central America</h4>
+                    <ul class="country-list">
+                        <li><a href="#">United States</a></li>
+                        <li><a href="#">Mexico</a></li>
+                        <li><a href="#">Canada</a></li>
+                        <li><a href="#">Costa Rica</a></li>
+                        <li><a href="#">Cuba</a></li>
+                        <li><a href="#">Dominican Republic</a></li>
+                        <li><a href="#">Jamaica</a></li>
+                        <li><a href="#">Bahamas</a></li>
+                        <li><a href="#">Panama</a></li>
+                        <li><a href="#">Puerto Rico</a></li>
+                        <li><a href="#">Belize</a></li>
+                        <li><a href="#">Guatemala</a></li>
+                        <li><a href="#">Honduras</a></li>
+                        <li><a href="#">Nicaragua</a></li>
+                        <li><a href="#">El Salvador</a></li>
+                        <li><a href="#" class="more-link">More in North & Central America →</a></li>
+                    </ul>
+                </div>
+                
+                <!-- South America -->
+                <div class="continent">
+                    <h4>South America</h4>
+                    <ul class="country-list">
+                        <li><a href="#">Brazil</a></li>
+                        <li><a href="#">Peru</a></li>
+                        <li><a href="#">Argentina</a></li>
+                        <li><a href="#">Colombia</a></li>
+                        <li><a href="#">Chile</a></li>
+                        <li><a href="#">Ecuador</a></li>
+                        <li><a href="#">Bolivia</a></li>
+                        <li><a href="#">Uruguay</a></li>
+                        <li><a href="#">Venezuela</a></li>
+                        <li><a href="#">Paraguay</a></li>
+                        <li><a href="#" class="more-link">More in South America →</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Africa -->
+                <div class="continent">
+                    <h4>Africa</h4>
+                    <ul class="country-list">
+                        <li><a href="#">South Africa</a></li>
+                        <li><a href="#">Morocco</a></li>
+                        <li><a href="#">Egypt</a></li>
+                        <li><a href="#">Kenya</a></li>
+                        <li><a href="#">Tanzania</a></li>
+                        <li><a href="#">Tunisia</a></li>
+                        <li><a href="#">Botswana</a></li>
+                        <li><a href="#">Namibia</a></li>
+                        <li><a href="#">Zimbabwe</a></li>
+                        <li><a href="#">Mauritius</a></li>
+                        <li><a href="#">Seychelles</a></li>
+                        <li><a href="#" class="more-link">More in Africa →</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Oceania -->
+                <div class="continent">
+                    <h4>Oceania</h4>
+                    <ul class="country-list">
+                        <li><a href="#">Australia</a></li>
+                        <li><a href="#">New Zealand</a></li>
+                        <li><a href="#">Fiji</a></li>
+                        <li><a href="#">French Polynesia</a></li>
+                        <li><a href="#">Hawaii</a></li>
+                        <li><a href="#">Cook Islands</a></li>
+                        <li><a href="#">Samoa</a></li>
+                        <li><a href="#">Vanuatu</a></li>
+                        <li><a href="#" class="more-link">More in Oceania →</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="see-all-countries">
+                <a href="#" class="btn btn-outline">See all countries</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Recent Activities -->
+    <section class="recent-activities">
+        <div class="container">
+            <div class="section-heading">
+                <h3>Recently Added Activities</h3>
+                <p>Check out these newly discovered free things to do</p>
+            </div>
+            
+            <div class="activity-grid">
+                <div class="activity-card">
+                    <div class="activity-image" style="background-image: url('/api/placeholder/300/300')"></div>
+                    <div class="activity-details">
+                        <span class="activity-category">Museums</span>
+                        <h4>Metropolitan Museum Free Fridays</h4>
+                        <div class="activity-location">
+                            📍 New York City, USA
+                        </div>
+                        <div class="activity-rating">
+                            ★★★★★ (87 reviews)
+                        </div>
+                        <a href="#" class="view-more">View details →</a>
+                    </div>
+                </div>
+                
+                <div class="activity-card">
+                    <div class="activity-image" style="background-image: url('/api/placeholder/300/300')"></div>
+                    <div class="activity-details">
+                        <span class="activity-category">Parks</span>
+                        <h4>Hyde Park Walking Tour</h4>
+                        <div class="activity-location">
+                            📍 London, UK
+                        </div>
+                        <div class="activity-rating">
+                            ★★★★☆ (42 reviews)
+                        </div>
+                        <a href="#" class="view-more">View details →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-heading">
+                <h3>How FreeThingsToDo Works</h3>
+                <p>Discover, explore, and enjoy free activities anywhere</p>
+            </div>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon">1</div>
+                    <h4>Search Your City</h4>
+                    <p>Enter your location or a city you're planning to visit to find free activities.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">2</div>
+                    <h4>Browse Activities</h4>
+                    <p>Filter by category, rating, or season to find experiences that match your interests.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">3</div>
+                    <h4>Save & Share</h4>
+                    <p>Create itineraries, save favorites, and share activities with friends and family.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>Free Things To Do</h4>
+                    <p>Discover free activities, attractions, and events in cities around the world.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon">f</a>
+                        <a href="#" class="social-icon">t</a>
+                        <a href="#" class="social-icon">in</a>
+                        <a href="#" class="social-icon">ig</a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="#">Popular Cities</a></li>
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">Seasonal Activities</a></li>
+                        <li><a href="#">Travel Guides</a></li>
+                        <li><a href="#">User Reviews</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="#">Submit Activity</a></li>
+                        <li><a href="#">Become a Local Guide</a></li>
+                        <li><a href="#">City Ambassadors</a></li>
+                        <li><a href="#">Forum</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">About Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 FreeThingsToDo. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Carousel functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.querySelector('.cities-carousel');
+            const prevButton = document.querySelector('.carousel-control.prev');
+            const nextButton = document.querySelector('.carousel-control.next');
+            
+            if (carousel && prevButton && nextButton) {
+                const cardWidth = 320 + 32; // card width + gap
+                
+                prevButton.addEventListener('click', function() {
+                    carousel.scrollBy({ left: -cardWidth * 3, behavior: 'smooth' });
+                });
+                
+                nextButton.addEventListener('click', function() {
+                    carousel.scrollBy({ left: cardWidth * 3, behavior: 'smooth' });
+                });
+            }
+            
+            // Toggle categories
+            const toggleButton = document.getElementById('toggleCategories');
+            const additionalCategories = document.querySelector('.additional-categories');
+            
+            if (toggleButton && additionalCategories) {
+                toggleButton.addEventListener('click', function() {
+                    const isVisible = additionalCategories.style.display !== 'none';
+                    
+                    additionalCategories.style.display = isVisible ? 'none' : 'grid';
+                    toggleButton.textContent = isVisible ? 'Show all categories' : 'Show fewer categories';
+                });
+            }
+            
+            // Hamburger menu functionality
+            const hamburger = document.querySelector('.hamburger');
+            const nav = document.querySelector('nav');
+            const body = document.body;
+            
+            if (hamburger && nav) {
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    nav.classList.toggle('active');
+                    body.classList.toggle('menu-open');
+                });
+                
+                // Close menu when clicking on a nav link
+                const navLinks = document.querySelectorAll('nav a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        hamburger.classList.remove('active');
+                        nav.classList.remove('active');
+                        body.classList.remove('menu-open');
+                    });
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!hamburger.contains(event.target) && !nav.contains(event.target) && nav.classList.contains('active')) {
+                        hamburger.classList.remove('active');
+                        nav.classList.remove('active');
+                        body.classList.remove('menu-open');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

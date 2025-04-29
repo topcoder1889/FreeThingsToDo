@@ -54,7 +54,7 @@ export default function CountriesByContinent() {
   return (
     <section className="py-16 bg-[#f9f9f9] rounded-[20px] mb-24">
       <div className="container">
-        <div className="section-heading text-center mb-12">
+        <div className="section-heading mb-12">
           <h3 className="text-3xl font-semibold mb-4">Browse By Country</h3>
           <p className="text-gray-600">Find free activities in top travel destinations around the world</p>
         </div>
@@ -69,7 +69,7 @@ export default function CountriesByContinent() {
                 {continent.countries.map((country) => (
                   <li key={country} className="mb-3 break-inside-avoid">
                     <Link 
-                      href="#" 
+                      href={`/country/${country.toLowerCase().replace(/\s+/g, '-')}`}
                       className="text-[#555] hover:text-primary transition-colors duration-300 flex items-center text-[0.95rem]"
                     >
                       <span className="text-primary mr-3">•</span>
@@ -79,7 +79,7 @@ export default function CountriesByContinent() {
                 ))}
                 <li className="mb-3 break-inside-avoid">
                   <Link 
-                    href="#" 
+                    href={`/countries/${continent.name.toLowerCase().replace(/\s+/g, '-')}`}
                     className="text-[#555] hover:text-primary transition-colors duration-300 flex items-center text-[0.95rem]"
                   >
                     <span className="text-primary mr-3">•</span>
@@ -93,7 +93,7 @@ export default function CountriesByContinent() {
         
         <div className="text-center mt-12">
           <Link 
-            href="#" 
+            href="/countries" 
             className="btn btn-outline"
           >
             See all countries

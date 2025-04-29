@@ -40,10 +40,10 @@ export default function FeaturedCities() {
   };
 
   return (
-    <section className="py-20">
+    <section className="py-[2rem]">
       <div className="container">
         <div className="section-heading text-left mb-12">
-          <h3 className="text-3xl font-semibold mb-4">Top 20 Cities Worldwide</h3>
+          <h3 className="text-[2.2rem] font-semibold mb-4">Top 20 Cities Worldwide</h3>
           <p className="text-gray-600 max-w-2xl">
             Explore free activities in these popular global destinations
           </p>
@@ -59,7 +59,7 @@ export default function FeaturedCities() {
             {cities.map((city) => (
               <div
                 key={city.name}
-                className="city-card min-w-[320px] bg-white rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-transform duration-300"
+                className="city-card min-w-[320px] bg-white rounded-2xl shadow-custom hover:-translate-y-1 transition-transform duration-300"
               >
                 <div
                     className="city-image w-[400px] h-[250px] bg-cover bg-center"

@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Things To Do in [Country Name] | FreeThingsToDo</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #3a8bbb;
+            --secondary: #2c3e50;
+            --accent: #f5f5f5;
+            --light: #ffffff;
+            --dark: #333333;
+            --success: #6bc7b8;
+            --warning: #f5a623;
+            --gray-100: #f8f9fa;
+            --gray-200: #e9ecef;
+            --gray-300: #dee2e6;
+            --font-main: 'Inter', 'Segoe UI', sans-serif;
+            --box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--gray-100);
+            font-weight: 400;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1340px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--secondary);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-outline {
+            border: 1px solid white;
+            color: white;
+            background-color: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: 1px solid var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+        .section-header {
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .logo h1 {
+            font-size: 1.75rem;
+            color: var(--dark);
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            letter-spacing: 0.5px;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Breadcrumb Navigation */
+        .breadcrumb-container {
+            background-color: white;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .breadcrumb {
+            display: flex;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        .breadcrumb .separator {
+            color: #aaa;
+        }
+
+        /* Country Hero Section */
+        .country-hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/api/placeholder/1200/600') center/cover no-repeat;
+            color: white;
+            padding: 8rem 0;
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .country-hero-content {
+            max-width: 800px;
+        }
+
+        .country-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .country-subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            max-width: 700px;
+        }
+
+        .country-quick-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .country-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Country Information Section */
+        .country-info {
+            padding: 3rem 0;
+        }
+
+        .info-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .info-card {
+            background-color: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            height: 100%;
+        }
+
+        .info-card-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .info-card-header h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .info-card-body {
+            padding: 1.5rem;
+        }
+
+        .info-list {
+            list-style: none;
+        }
+
+        .info-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .info-value {
+            font-weight: 500;
+        }
+
+        /* Top Cities/Regions Section */
+        .top-destinations {
+            padding: 3rem 0;
+            background-color: var(--gray-100);
+        }
+
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .destination-card {
+            background-color: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .destination-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .destination-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .destination-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background-color: rgba(58, 139, 187, 0.9);
+            color: white;
+            padding: 0.35rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            backdrop-filter: blur(5px);
+        }
+
+        .destination-content {
+            padding: 1.5rem;
+        }
+
+        .destination-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .destination-stats {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .destination-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .destination-description {
+            color: #444;
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.5;
+        }
+
+        .destination-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .destination-link:hover {
+            text-decoration: underline;
+        }
+
+        /* All Regions Section */
+        .all-regions {
+            padding: 3rem 0;
+        }
+
+        .regions-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .region-item {
+            background-color: white;
+            border-radius: 12px;
+            padding: 1.25rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .region-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .region-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .region-count {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        /* All Cities Section */
+        .all-cities {
+            padding: 3rem 0;
+            background-color: var(--gray-100);
+        }
+        
+        .cities-container {
+            background-color: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .city-filters {
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .alphabet-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        .alphabet-filter .letter {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--gray-100);
+            border-radius: 4px;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .alphabet-filter .letter:hover, 
+        .alphabet-filter .letter.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Simplified Filter Bar */
+        .filter-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 1rem 0;
+        }
+        
+        .search-container {
+            position: relative;
+            flex: 0 0 250px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 0.6rem 2.5rem 0.6rem 1rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(58, 139, 187, 0.1);
+        }
+        
+        .search-button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+        }
+        
+        .filter-options {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-select {
+            padding: 0.6rem 1rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 50px;
+            background-color: white;
+            color: var(--dark);
+            font-size: 0.9rem;
+            min-width: 120px;
+        }
+        
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .letter-section {
+            margin-bottom: 2.5rem;
+        }
+        
+        .letter-heading {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--gray-200);
+        }
+        
+        .cities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .city-item {
+            display: block;
+            padding: 1rem;
+            background-color: var(--gray-100);
+            border-radius: 8px;
+            transition: var(--transition);
+            text-decoration: none;
+            color: var(--dark);
+        }
+        
+        .city-item:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .city-name {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+        
+        .city-info {
+            font-size: 0.8rem;
+            color: inherit;
+            opacity: 0.8;
+        }
+        
+        .show-more-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .show-more-btn {
+            padding: 0.75rem 2rem;
+            background-color: white;
+            border: 1px solid var(--gray-300);
+            border-radius: 50px;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .show-more-btn:hover {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Travel Tips Section */
+        .travel-tips {
+            padding: 4rem 0;
+            background-color: var(--gray-100);
+        }
+
+        .tips-container {
+            background-color: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+        }
+
+        .tips-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .tips-icon {
+            color: var(--primary);
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .tip-item {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .tip-icon {
+            flex: 0 0 40px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(58, 139, 187, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .tip-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .tip-content p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Call to Action */
+        .cta {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/api/placeholder/1200/600') center/cover no-repeat;
+            text-align: center;
+            padding: 6rem 0;
+            color: white;
+            border-radius: 20px;
+            margin: 4rem 0;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            font-weight: 300;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            padding: 4rem 0 2rem;
+            color: white;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h4 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .footer-column h4:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-column a {
+            text-decoration: none;
+            color: rgba(255,255,255,0.7);
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .info-cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .destinations-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .regions-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .range-filter {
+                grid-column: span 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .country-title {
+                font-size: 2.5rem;
+            }
+            
+            .destinations-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .info-cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .regions-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .country-actions {
+                flex-direction: column;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                max-width: 250px;
+                margin: 0 auto;
+            }
+            
+            .cities-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .filter-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .search-container {
+                width: 100%;
+                flex: none;
+            }
+            
+            .filter-options {
+                width: 100%;
+            }
+            
+            .filter-select {
+                flex: 1;
+            }
+            
+            .alphabet-filter {
+                gap: 0.25rem;
+            }
+            
+            .alphabet-filter .letter {
+                width: 28px;
+                height: 28px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .regions-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .country-quick-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .cities-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <a href="#" class="logo">
+                    <h1>FreeThingsToDo</h1>
+                </a>
+                
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Browse by Country</a></li>
+                        <li><a href="#">Submit Activity</a></li>
+                        <li><a href="#">About</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="auth-buttons">
+                    <a href="#" class="btn btn-outline">Log In</a>
+                    <a href="#" class="btn btn-primary">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Breadcrumb Navigation -->
+    <div class="breadcrumb-container">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="#">Home</a>
+                <span class="separator">/</span>
+                <a href="#">Countries</a>
+                <span class="separator">/</span>
+                <span>[Country Name]</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Country Hero Section -->
+    <section class="country-hero">
+        <div class="container">
+            <div class="country-hero-content">
+                <h1 class="country-title">[Country Name]</h1>
+                <p class="country-subtitle">Discover free activities, attractions, and cultural experiences across this beautiful and diverse country</p>
+                
+                <div class="country-quick-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">45+</span>
+                        <span class="stat-label">Cities</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">1,200+</span>
+                        <span class="stat-label">Free Activities</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">4.8</span>
+                        <span class="stat-label">Traveler Rating</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">10M+</span>
+                        <span class="stat-label">Annual Visitors</span>
+                    </div>
+                </div>
+                
+                <div class="country-actions">
+                    <a href="#top-destinations" class="btn btn-primary">Explore Top Cities</a>
+                    <a href="#travel-tips" class="btn btn-outline">Travel Tips</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Country Information Cards -->
+    <section class="country-info">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About [Country Name]</h2>
+                <p class="section-subtitle">Essential information to help you plan your visit</p>
+            </div>
+            
+            <div class="info-cards-grid">
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <div class="info-icon">📊</div>
+                        <h3>Key Facts</h3>
+                    </div>
+                    <div class="info-card-body">
+                        <ul class="info-list">
+                            <li>
+                                <span class="info-label">Capital</span>
+                                <span class="info-value">[Capital City]</span>
+                            </li>
+                            <li>
+                                <span class="info-label">Population</span>
+                                <span class="info-value">[Population]</span>
+                            </li>
+                            <li>
+                                <span class="info-label">Language</span>
+                                <span class="info-value">[Official Languages]</span>
+                            </li>
+                            <li>
+                                <span class="info-label">Currency</span>
+                                <span class="info-value">[Currency]</span>
+                            </li>
+                            <li>
+                                <span class="info-label">Time Zone</span>
+                                <span class="info-value">[Time Zone]</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <div class="info-icon">🌍</div>
+                        <h3>Travel Essentials</h3>
+                    </div>
+                    <div class="info-card-body">
+                        <ul class="info-list">
+                            <li>
+                                <span class="info-label">Best Time to Visit</span>
+                                <span class="info-value">[Seasons]</span>
+                            </li>
+                            <li>
+                                <span class="info-label">Visa Requirements</span>
+                                <span class="info-value">[Requirements]</span>
+                            </li>
+                            <li>
+                                <span class="info-label">Public Transport</span>
+                                <span class="info-value">[Availability Rating]</span>
+                            </li>
+                            <li>
+                                <span class="info-label">Safety</span>
+                                <span class="info-value">[Safety Rating]</span>
+                            </li>
+                            <li>
+                                <span class="info-label">Budget (Daily)</span>
+                                <span class="info-value">[Budget Range]</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <div class="info-icon">🎭</div>
+                        <h3>Cultural Insights</h3>
+                    </div>
+                    <div class="info-card-body">
+                        <ul class="info-list">
+                            <li>
+                                <span class="info-label">Traditional Cuisine</span>
+                                <span class="info-value">[Key Dishes]</span>
+                            </li>
+                            <li>
+                                <span class="info-label">Annual Festivals</span>
+                                <span class="info-value">[Major Festivals]</span>
+                            </li>
+                            <li>
+                                <span class="info-label">Cultural Etiquette</span>
+                                <span class="info-value">[Key Customs]</span>
+                            </li>
+                            <li>
+                                <span class="info-label">Religion</span>
+                                <span class="info-value">[Major Religions]</span>
+                            </li>
+                            <li>
+                                <span class="info-label">Local Arts</span>
+                                <span class="info-value">[Traditional Arts]</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Top Cities/Destinations -->
+    <section id="top-destinations" class="top-destinations">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Top Cities & Destinations</h2>
+                <p class="section-subtitle">Explore the most popular cities and regions for free activities</p>
+            </div>
+            
+            <div class="destinations-grid">
+                <!-- City 1 -->
+                <div class="destination-card">
+                    <div class="destination-image" style="background-image: url('/api/placeholder/600/400')">
+                        <div class="destination-badge">Most Popular</div>
+                    </div>
+                    <div class="destination-content">
+                        <h3 class="destination-name">[City Name 1]</h3>
+                        <div class="destination-stats">
+                            <div class="destination-stat">
+                                <span>📍 95 Activities</span>
+                            </div>
+                            <div class="destination-stat">
+                                <span>⭐ 4.9 Rating</span>
+                            </div>
+                        </div>
+                        <p class="destination-description">Experience the vibrant culture and rich history of [City Name 1], known for its breathtaking architecture, lively markets, and stunning natural surroundings.</p>
+                        <a href="#" class="destination-link">Explore activities →</a>
+                    </div>
+                </div>
+                
+                <!-- City 2 -->
+                <div class="destination-card">
+                    <div class="destination-image" style="background-image: url('/api/placeholder/600/400')">
+                        <div class="destination-badge">Family-Friendly</div>
+                    </div>
+                    <div class="destination-content">
+                        <h3 class="destination-name">[City Name 2]</h3>
+                        <div class="destination-stats">
+                            <div class="destination-stat">
+                                <span>📍 78 Activities</span>
+                            </div>
+                            <div class="destination-stat">
+                                <span>⭐ 4.7 Rating</span>
+                            </div>
+                        </div>
+                        <p class="destination-description">Discover the charm of [City Name 2] with its family-friendly attractions, cultural landmarks, and beautiful beaches that offer something for visitors of all ages.</p>
+                        <a href="#" class="destination-link">Explore activities →</a>
+                    </div>
+                </div>
+                
+                <!-- City 3 -->
+                <div class="destination-card">
+                    <div class="destination-image" style="background-image: url('/api/placeholder/600/400')">
+                        <div class="destination-badge">Nature Lovers</div>
+                    </div>
+                    <div class="destination-content">
+                        <h3 class="destination-name">[City Name 3]</h3>
+                        <div class="destination-stats">
+                            <div class="destination-stat">
+                                <span>📍 65 Activities</span>
+                            </div>
+                            <div class="destination-stat">
+                                <span>⭐ 4.8 Rating</span>
+                            </div>
+                        </div>
+                        <p class="destination-description">Explore the natural wonders surrounding [City Name 3], from stunning mountain trails to pristine lakes and unique wildlife viewing opportunities.</p>
+                        <a href="#" class="destination-link">Explore activities →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- All Regions -->
+    <section class="all-regions">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">All Regions</h2>
+                <p class="section-subtitle">Browse free activities by region across [Country Name]</p>
+            </div>
+            
+            <div class="regions-grid">
+                <div class="region-item">
+                    <h3 class="region-name">[Region Name 1]</h3>
+                    <p class="region-count">58 Activities</p>
+                </div>
+                
+                <div class="region-item">
+                    <h3 class="region-name">[Region Name 2]</h3>
+                    <p class="region-count">42 Activities</p>
+                </div>
+                
+                <div class="region-item">
+                    <h3 class="region-name">[Region Name 3]</h3>
+                    <p class="region-count">35 Activities</p>
+                </div>
+                
+                <div class="region-item">
+                    <h3 class="region-name">[Region Name 4]</h3>
+                    <p class="region-count">29 Activities</p>
+                </div>
+                
+                <div class="region-item">
+                    <h3 class="region-name">[Region Name 5]</h3>
+                    <p class="region-count">51 Activities</p>
+                </div>
+                
+                <div class="region-item">
+                    <h3 class="region-name">[Region Name 6]</h3>
+                    <p class="region-count">37 Activities</p>
+                </div>
+                
+                <div class="region-item">
+                    <h3 class="region-name">[Region Name 7]</h3>
+                    <p class="region-count">44 Activities</p>
+                </div>
+                
+                <div class="region-item">
+                    <h3 class="region-name">[Region Name 8]</h3>
+                    <p class="region-count">22 Activities</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- All Cities -->
+    <section class="all-cities">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">All Cities</h2>
+                <p class="section-subtitle">Complete directory of cities with free activities in [Country Name]</p>
+            </div>
+            
+            <div class="cities-container">
+                <!-- City filters/alphabet navigation -->
+                <div class="city-filters">
+                    <div class="alphabet-filter">
+                        <a href="#letter-a" class="letter active">A</a>
+                        <a href="#letter-b" class="letter">B</a>
+                        <a href="#letter-c" class="letter">C</a>
+                        <a href="#letter-d" class="letter">D</a>
+                        <a href="#letter-e" class="letter">E</a>
+                        <a href="#letter-f" class="letter">F</a>
+                        <a href="#letter-g" class="letter">G</a>
+                        <a href="#letter-h" class="letter">H</a>
+                        <a href="#letter-i" class="letter">I</a>
+                        <a href="#letter-j" class="letter">J</a>
+                        <a href="#letter-k" class="letter">K</a>
+                        <a href="#letter-l" class="letter">L</a>
+                        <a href="#letter-m" class="letter">M</a>
+                        <a href="#letter-n" class="letter">N</a>
+                        <a href="#letter-o" class="letter">O</a>
+                        <a href="#letter-p" class="letter">P</a>
+                        <a href="#letter-q" class="letter">Q</a>
+                        <a href="#letter-r" class="letter">R</a>
+                        <a href="#letter-s" class="letter">S</a>
+                        <a href="#letter-t" class="letter">T</a>
+                        <a href="#letter-u" class="letter">U</a>
+                        <a href="#letter-v" class="letter">V</a>
+                        <a href="#letter-w" class="letter">W</a>
+                        <a href="#letter-x" class="letter">X</a>
+                        <a href="#letter-y" class="letter">Y</a>
+                        <a href="#letter-z" class="letter">Z</a>
+                    </div>
+                    
+                    <div class="filter-bar">
+                        <div class="search-container">
+                            <input type="text" class="search-input" placeholder="Search cities...">
+                            <button class="search-button">🔍</button>
+                        </div>
+                        
+                        <div class="filter-options">
+                            <select class="filter-select">
+                                <option value="all">All Regions</option>
+                                <option value="region1">[Region 1]</option>
+                                <option value="region2">[Region 2]</option>
+                                <option value="region3">[Region 3]</option>
+                            </select>
+                            
+                            <select class="filter-select">
+                                <option value="all">Any Size</option>
+                                <option value="large">Large Cities</option>
+                                <option value="medium">Medium Cities</option>
+                                <option value="small">Small Cities</option>
+                            </select>
+                            
+                            <select class="filter-select">
+                                <option value="name">Sort: A-Z</option>
+                                <option value="popular">Sort: Most Popular</option>
+                                <option value="activities">Sort: Most Activities</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- City List by Alphabet -->
+                <div class="cities-list">
+                    <!-- A Section -->
+                    <div id="letter-a" class="letter-section">
+                        <h3 class="letter-heading">A</h3>
+                        <div class="cities-grid">
+                            <a href="#" class="city-item">
+                                <div class="city-name">Alicante</div>
+                                <div class="city-info">28 Activities</div>
+                            </a>
+                            <a href="#" class="city-item">
+                                <div class="city-name">Almería</div>
+                                <div class="city-info">16 Activities</div>
+                            </a>
+                            <a href="#" class="city-item">
+                                <div class="city-name">Avila</div>
+                                <div class="city-info">22 Activities</div>
+                            </a>
+                            <a href="#" class="city-item">
+                                <div class="city-name">Algeciras</div>
+                                <div class="city-info">14 Activities</div>
+                            </a>
+                            <a href="#" class="city-item">
+                                <div class="city-name">Alcalá de Henares</div>
+                                <div class="city-info">19 Activities</div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- B Section -->
+                    <div id="letter-b" class="letter-section">
+                        <h3 class="letter-heading">B</h3>
+                        <div class="cities-grid">
+                            <a href="#" class="city-item">
+                                <div class="city-name">Barcelona</div>
+                                <div class="city-info">95 Activities</div>
+                            </a>
+                            <a href="#" class="city-item">
+                                <div class="city-name">Bilbao</div>
+                                <div class="city-info">42 Activities</div>
+                            </a>
+                            <a href="#" class="city-item">
+                                <div class="city-name">Burgos</div>
+                                <div class="city-info">31 Activities</div>
+                            </a>
+                            <a href="#" class="city-item">
+                                <div class="city-name">Badajoz</div>
+                                <div class="city-info">17 Activities</div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- C Section -->
+                    <div id="letter-c" class="letter-section">
+                        <h3 class="letter-heading">C</h3>
+                        <div class="cities-grid">
+                            <a href="#" class="city-item">
+                                <div class="city-name">Cádiz</div>
+                                <div class="city-info">38 Activities</div>
+                            </a>
+                            <a href="#" class="city-item">
+                                <div class="city-name">Córdoba</div>
+                                <div class="city-info">47 Activities</div>
+                            </a>
+                            <a href="#" class="city-item">
+                                <div class="city-name">Cuenca</div>
+                                <div class="city-info">24 Activities</div>
+                            </a>
+                            <a href="#" class="city-item">
+                                <div class="city-name">Castellón</div>
+                                <div class="city-info">19 Activities</div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- More letter sections would continue here... -->
+                    
+                    <!-- Show More Button -->
+                    <div class="show-more-container">
+                        <button class="show-more-btn">Show More Cities</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Travel Tips -->
+    <section id="travel-tips" class="travel-tips">
+        <div class="container">
+            <div class="tips-container">
+                <h2 class="tips-title">
+                    <span class="tips-icon">✈️</span>
+                    Travel Tips for [Country Name]
+                </h2>
+                
+                <div class="tips-grid">
+                    <div class="tip-item">
+                        <div class="tip-icon">💰</div>
+                        <div class="tip-content">
+                            <h4>Money Saving</h4>
+                            <p>Use local public transportation instead of taxis, visit museums on their free days (often the first Sunday of the month), and eat at local markets for authentic and affordable meals.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-item">
+                        <div class="tip-icon">🗓️</div>
+                        <div class="tip-content">
+                            <h4>Best Times to Visit</h4>
+                            <p>The shoulder seasons (April-May and September-October) offer pleasant weather, fewer crowds, and often lower prices. Avoid the peak summer season for a more authentic experience.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-item">
+                        <div class="tip-icon">🚆</div>
+                        <div class="tip-content">
+                            <h4>Getting Around</h4>
+                            <p>Purchase a transit pass for unlimited travel on public transportation. The high-speed rail network connects major cities efficiently, while regional trains offer scenic routes through the countryside.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-item">
+                        <div class="tip-icon">🍽️</div>
+                        <div class="tip-content">
+                            <h4>Local Cuisine</h4>
+                            <p>Explore local food markets and try regional specialties. Most cities have affordable lunch menus at restaurants during weekdays, offering a great value for experiencing authentic cuisine.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Call to Action -->
+    <div class="container">
+        <section class="cta">
+            <h2>Start Planning Your [Country] Adventure</h2>
+            <p>Discover hundreds of free activities and experiences across [Country Name]'s most beautiful cities and regions.</p>
+            
+            <div class="cta-buttons">
+                <a href="#top-destinations" class="btn btn-primary">Explore Top Cities</a>
+                <a href="#" class="btn btn-outline">Create Custom Itinerary</a>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>FreeThingsToDo</h4>
+                    <p style="color: rgba(255,255,255,0.7); margin-bottom: 1.5rem;">Discover free activities, attractions, and events in cities around the world.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon">f</a>
+                        <a href="#" class="social-icon">t</a>
+                        <a href="#" class="social-icon">in</a>
+                        <a href="#" class="social-icon">ig</a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="#">Popular Countries</a></li>
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">Seasonal Activities</a></li>
+                        <li><a href="#">Travel Guides</a></li>
+                        <li><a href="#">User Reviews</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="#">Submit Activity</a></li>
+                        <li><a href="#">Become a Local Guide</a></li>
+                        <li><a href="#">Country Ambassadors</a></li>
+                        <li><a href="#">Forum</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">About Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 FreeThingsToDo. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
