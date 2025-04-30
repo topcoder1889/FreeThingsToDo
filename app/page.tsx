@@ -3,11 +3,11 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Navbar from './components/Navbar';
-import FeaturedCities from './components/FeaturedCities';
-import CountriesByContinent from './components/CountriesByContinent';
-import Categories from './components/Categories';
-import HowItWorks from './components/HowItWorks';
-import RecentlyAddedActivities from './components/RecentlyAddedActivities';
+import FeaturedCities from './components/main/FeaturedCities';
+import CountriesByContinent from './components/main/CountriesByContinent';
+import Categories from './components/main/Categories';
+import HowItWorks from './components/main/HowItWorks';
+import RecentlyAddedActivities from './components/main/RecentlyAddedActivities';
 import Footer from './components/Footer';
 
 export default function Home() {
