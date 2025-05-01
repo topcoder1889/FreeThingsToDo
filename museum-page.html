@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Mateo County History Museum | FreeThingsToDo</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #3a8bbb;
+            --secondary: #2c3e50;
+            --accent: #f5f5f5;
+            --light: #ffffff;
+            --dark: #333333;
+            --success: #6bc7b8;
+            --warning: #f5a623;
+            --danger: #e74c3c;
+            --gray-100: #f8f9fa;
+            --gray-200: #e9ecef;
+            --gray-300: #dee2e6;
+            --font-main: 'Inter', 'Segoe UI', sans-serif;
+            --box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--gray-100);
+            font-weight: 400;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1340px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--secondary);
+        }
+
+        /* Header Styling */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .logo h1 {
+            font-size: 1.75rem;
+            color: var(--dark);
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            letter-spacing: 0.5px;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-outline {
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            background-color: transparent;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: 1px solid var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+        /* Breadcrumb Navigation */
+        .breadcrumb-container {
+            background-color: white;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .breadcrumb {
+            display: flex;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        .breadcrumb .separator {
+            color: #aaa;
+        }
+
+        /* Museum Hero Section */
+        .museum-hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/api/placeholder/1200/600') center/cover no-repeat;
+            color: white;
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .museum-hero-content {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .museum-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .museum-subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .museum-quick-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .quick-info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .quick-info-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .quick-info-text {
+            font-size: 0.95rem;
+        }
+
+        .quick-info-label {
+            opacity: 0.8;
+            font-size: 0.85rem;
+        }
+
+        .museum-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Museum Content Section */
+        .museum-content {
+            padding: 4rem 0;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+        }
+
+        .content-main {
+            background-color: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+
+        .content-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* Main Content Blocks */
+        .content-section {
+            padding: 2rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .content-section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title-icon {
+            color: var(--primary);
+        }
+
+        .section-content p {
+            margin-bottom: 1.25rem;
+            color: #444;
+            line-height: 1.7;
+        }
+
+        .section-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlights-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .highlight-item {
+            background-color: var(--gray-100);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .highlight-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .highlight-text {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        /* Photo Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            height: 180px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Info Card */
+        .info-card {
+            background-color: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+
+        .info-card-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.25rem;
+        }
+
+        .info-card-header h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .info-card-body {
+            padding: 1.5rem;
+        }
+
+        .info-list {
+            list-style: none;
+        }
+
+        .info-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .info-value {
+            font-weight: 500;
+        }
+
+        /* Map Container */
+        .map-container {
+            background-color: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+
+        .map-header {
+            padding: 1.25rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .map-header h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .map-body {
+            height: 300px;
+            background-color: #eee;
+        }
+
+        .map-body img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .map-footer {
+            padding: 1.25rem;
+            border-top: 1px solid #eee;
+            font-size: 0.95rem;
+        }
+
+        .map-footer p {
+            margin-bottom: 0.75rem;
+        }
+
+        .map-footer p:last-child {
+            margin-bottom: 0;
+        }
+
+        .map-footer a {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        /* Review Section */
+        .reviews-container {
+            margin-top: 2rem;
+        }
+
+        .review-stats {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            padding: 1.5rem;
+            background-color: var(--gray-100);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .overall-rating {
+            text-align: center;
+        }
+
+        .rating-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--dark);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .rating-stars {
+            color: var(--warning);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .rating-count {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .rating-breakdown {
+            flex: 1;
+        }
+
+        .rating-category {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .category-label {
+            flex: 0 0 120px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .category-bar {
+            flex: 1;
+            height: 8px;
+            background-color: #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .category-fill {
+            height: 100%;
+            background-color: var(--primary);
+        }
+
+        .category-value {
+            flex: 0 0 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .review-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .review-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .reviewer-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .reviewer-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #eee;
+            overflow: hidden;
+        }
+
+        .reviewer-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .reviewer-name {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .review-date {
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .review-rating {
+            color: var(--warning);
+        }
+
+        .review-text {
+            color: #444;
+            line-height: 1.7;
+        }
+
+        /* Nearby Attractions */
+        .nearby-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .nearby-item {
+            display: flex;
+            gap: 1rem;
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .nearby-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .nearby-image {
+            flex: 0 0 80px;
+            background-color: #eee;
+        }
+
+        .nearby-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .nearby-content {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nearby-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .nearby-distance {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .nearby-type {
+            font-size: 0.8rem;
+            color: white;
+            background-color: var(--primary);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: auto;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .nearby-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .museum-title {
+                font-size: 2.5rem;
+            }
+            
+            .museum-quick-info {
+                gap: 1.5rem;
+            }
+            
+            .museum-actions {
+                flex-direction: column;
+            }
+            
+            .highlights-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .review-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .museum-quick-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <a href="#" class="logo">
+                    <h1>FreeThingsToDo</h1>
+                </a>
+                
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Browse by City</a></li>
+                        <li><a href="#">Submit Activity</a></li>
+                        <li><a href="#">About</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="auth-buttons">
+                    <a href="#" class="btn btn-outline">Log In</a>
+                    <a href="#" class="btn btn-primary">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Breadcrumb Navigation -->
+    <div class="breadcrumb-container">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="#">Home</a>
+                <span class="separator">/</span>
+                <a href="#">USA</a>
+                <span class="separator">/</span>
+                <a href="#">California</a>
+                <span class="separator">/</span>
+                <a href="#">Redwood City</a>
+                <span class="separator">/</span>
+                <span>San Mateo County History Museum</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Museum Hero Section -->
+    <section class="museum-hero">
+        <div class="container">
+            <div class="museum-hero-content">
+                <h1 class="museum-title">San Mateo County History Museum</h1>
+                <p class="museum-subtitle">Explore the rich heritage of the Peninsula in a magnificent 1910 courthouse building</p>
+                
+                <div class="museum-quick-info">
+                    <div class="quick-info-item">
+                        <div class="quick-info-icon">💰</div>
+                        <div class="quick-info-content">
+                            <div class="quick-info-text">Free on first Friday of each month</div>
+                            <div class="quick-info-label">Regular: $6 Adults, $4 Seniors/Students</div>
+                        </div>
+                    </div>
+                    <div class="quick-info-item">
+                        <div class="quick-info-icon">⏱️</div>
+                        <div class="quick-info-content">
+                            <div class="quick-info-text">1-2 hours recommended</div>
+                            <div class="quick-info-label">Visit Duration</div>
+                        </div>
+                    </div>
+                    <div class="quick-info-item">
+                        <div class="quick-info-icon">⭐</div>
+                        <div class="quick-info-content">
+                            <div class="quick-info-text">4.7/5 based on 125 reviews</div>
+                            <div class="quick-info-label">Visitor Rating</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="museum-actions">
+                    <a href="#map" class="btn btn-primary">Get Directions</a>
+                    <a href="https://historysmc.org" target="_blank" class="btn btn-outline">Visit Website</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Museum Content Section -->
+    <section class="museum-content">
+        <div class="container">
+            <div class="content-grid">
+                <div class="content-main">
+                    <!-- Description Section -->
+                    <div class="content-section">
+                        <h2 class="section-title">
+                            <span class="section-title-icon">📜</span>
+                            About the Museum
+                        </h2>
+                        <div class="section-content">
+                            <p>The San Mateo County History Museum is housed in the historic "Old Courthouse" in Redwood City, a stunning example of classical revival architecture completed in 1910. The building itself is a California Historical Landmark and is listed on the National Register of Historic Places.</p>
+                            
+                            <p>The museum's mission is to preserve and interpret the rich history of San Mateo County through engaging exhibits, educational programs, and research facilities. The museum is operated by the San Mateo County Historical Association, which was founded in 1935.</p>
+                            
+                            <p>Through artifacts, photographs, interactive displays, and storytelling, visitors can explore the diverse heritage of the Peninsula from its indigenous Ohlone inhabitants through Spanish colonization, Mexican independence, and American statehood to the present day. Special emphasis is placed on the transformative events that shaped the county's development, including transportation innovations, agricultural changes, and technological evolution.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Highlights Section -->
+                    <div class="content-section">
+                        <h2 class="section-title">
+                            <span class="section-title-icon">✨</span>
+                            Museum Highlights
+                        </h2>
+                        <div class="section-content">
+                            <p>The San Mateo County History Museum features several permanent and rotating exhibits that showcase the Peninsula's unique heritage. Here are some must-see highlights during your visit:</p>
+                            
+                            <div class="highlights-list">
+                                <div class="highlight-item">
+                                    <div class="highlight-icon">🏛️</div>
+                                    <h3 class="highlight-title">Courtroom A</h3>
+                                    <p class="highlight-text">A meticulously restored 1910 courtroom with original furnishings that offers visitors a glimpse into the early 20th-century justice system.</p>
+                                </div>
+                                
+                                <div class="highlight-item">
+                                    <div class="highlight-icon">🚂</div>
+                                    <h3 class="highlight-title">Transportation Gallery</h3>
+                                    <p class="highlight-text">Exhibits detailing how transportation shaped the county's development, from stagecoaches to railways and the impact of automobiles.</p>
+                                </div>
+                                
+                                <div class="highlight-item">
+                                    <div class="highlight-icon">👑</div>
+                                    <div class="highlight-title">The Atkinson Dome</div>
+                                    <div class="highlight-text">A stunning stained glass dome that crowns the rotunda and creates a dramatic architectural focal point.</div>
+                                </div>
+                                
+                                <div class="highlight-item">
+                                    <div class="highlight-icon">🏢</div>
+                                    <h3 class="highlight-title">Living History</h3>
+                                    <p class="highlight-text">Interactive exhibits that recreate historic businesses, including a general store, a barbershop, and other establishments from the county's past.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Gallery Section -->
+                    <div class="content-section">
+                        <h2 class="section-title">
+                            <span class="section-title-icon">📷</span>
+                            Photo Gallery
+                        </h2>
+                        <div class="section-content">
+                            <div class="gallery-grid">
+                                <div class="gallery-item">
+                                    <img src="/api/placeholder/400/300" alt="Museum Exterior">
+                                </div>
+                                <div class="gallery-item">
+                                    <img src="/api/placeholder/400/300" alt="Courtroom Exhibit">
+                                </div>
+                                <div class="gallery-item">
+                                    <img src="/api/placeholder/400/300" alt="Rotunda with Stained Glass Dome">
+                                </div>
+                                <div class="gallery-item">
+                                    <img src="/api/placeholder/400/300" alt="Historic Artifacts Display">
+                                </div>
+                                <div class="gallery-item">
+                                    <img src="/api/placeholder/400/300" alt="Interactive Exhibit">
+                                </div>
+                                <div class="gallery-item">
+                                    <img src="/api/placeholder/400/300" alt="Museum Gift Shop">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Reviews Section -->
+                    <div class="content-section">
+                        <h2 class="section-title">
+                            <span class="section-title-icon">⭐</span>
+                            Visitor Reviews
+                        </h2>
+                        <div class="section-content">
+                            <div class="review-stats">
+                                <div class="overall-rating">
+                                    <div class="rating-value">4.7</div>
+                                    <div class="rating-stars">★★★★★</div>
+                                    <div class="rating-count">Based on 125 reviews</div>
+                                </div>
+                                
+                                <div class="rating-breakdown">
+                                    <div class="rating-category">
+                                        <div class="category-label">Experience</div>
+                                        <div class="category-bar">
+                                            <div class="category-fill" style="width: 95%;"></div>
+                                        </div>
+                                        <div class="category-value">4.8</div>
+                                    </div>
+                                    <div class="rating-category">
+                                        <div class="category-label">Value</div>
+                                        <div class="category-bar">
+                                            <div class="category-fill" style="width: 90%;"></div>
+                                        </div>
+                                        <div class="category-value">4.5</div>
+                                    </div>
+                                    <div class="rating-category">
+                                        <div class="category-label">Facilities</div>
+                                        <div class="category-bar">
+                                            <div class="category-fill" style="width: 92%;"></div>
+                                        </div>
+                                        <div class="category-value">4.6</div>
+                                    </div>
+                                    <div class="rating-category">
+                                        <div class="category-label">Staff</div>
+                                        <div class="category-bar">
+                                            <div class="category-fill" style="width: 98%;"></div>
+                                        </div>
+                                        <div class="category-value">4.9</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="review-list">
+                                <div class="review-card">
+                                    <div class="review-header">
+                                        <div class="reviewer-info">
+                                            <div class="reviewer-avatar">
+                                                <img src="/api/placeholder/100/100" alt="Reviewer">
+                                            </div>
+                                            <div class="reviewer-details">
+                                                <div class="reviewer-name">Susan M.</div>
+                                                <div class="review-date">Visited March 2025</div>
+                                            </div>
+                                        </div>
+                                        <div class="review-rating">★★★★★</div>
+                                    </div>
+                                    <p class="review-text">What a hidden gem! The building itself is worth the visit, but the exhibits really bring the county's history to life. The volunteers were so knowledgeable and eager to share stories. Don't miss the stained glass dome in the rotunda - absolutely breathtaking. Definitely plan to visit on the first Friday of the month for free admission!</p>
+                                </div>
+                                
+                                <div class="review-card">
+                                    <div class="review-header">
+                                        <div class="reviewer-info">
+                                            <div class="reviewer-avatar">
+                                                <img src="/api/placeholder/100/100" alt="Reviewer">
+                                            </div>
+                                            <div class="reviewer-details">
+                                                <div class="reviewer-name">James T.</div>
+                                                <div class="review-date">Visited January 2025</div>
+                                            </div>
+                                        </div>
+                                        <div class="review-rating">★★★★☆</div>
+                                    </div>
+                                    <p class="review-text">A great way to spend a rainy afternoon. The interactive exhibits were engaging for my kids, and I learned quite a bit about local history I hadn't known. The old courtroom was particularly interesting. My only minor complaint is that some of the text panels were a bit small to read. Otherwise, a fascinating museum that's definitely worth a visit.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Nearby Attractions Section -->
+                    <div class="content-section">
+                        <h2 class="section-title">
+                            <span class="section-title-icon">📍</span>
+                            Nearby Attractions
+                        </h2>
+                        <div class="section-content">
+                            <p>While you're in the area, consider visiting these other attractions near the San Mateo County History Museum:</p>
+                            
+                            <div class="nearby-list">
+                                <div class="nearby-item">
+                                    <div class="nearby-image">
+                                        <img src="/api/placeholder/200/200" alt="Courthouse Square">
+                                    </div>
+                                    <div class="nearby-content">
+                                        <h3 class="nearby-title">Courthouse Square</h3>
+                                        <div class="nearby-distance">1 minute walk</div>
+                                        <span class="nearby-type">Public Space</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="nearby-item">
+                                    <div class="nearby-image">
+                                        <img src="/api/placeholder/200/200" alt="Fox Theatre">
+                                    </div>
+                                    <div class="nearby-content">
+                                        <h3 class="nearby-title">Fox Theatre</h3>
+                                        <div class="nearby-distance">5 minute walk</div>
+                                        <span class="nearby-type">Entertainment</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="nearby-item">
+                                    <div class="nearby-image">
+                                        <img src="/api/placeholder/200/200" alt="Public Art Walk">
+                                    </div>
+                                    <div class="nearby-content">
+                                        <h3 class="nearby-title">Public Art Walk</h3>
+                                        <div class="nearby-distance">Starting nearby</div>
+                                        <span class="nearby-type">Cultural</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="nearby-item">
+                                    <div class="nearby-image">
+                                        <img src="/api/placeholder/200/200" alt="Redwood City Public Library">
+                                    </div>
+                                    <div class="nearby-content">
+                                        <h3 class="nearby-title">Redwood City Public Library</h3>
+                                        <div class="nearby-distance">7 minute walk</div>
+                                        <span class="nearby-type">Education</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-sidebar">
+                    <!-- Essential Information Card -->
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <h3>Essential Information</h3>
+                        </div>
+                        <div class="info-card-body">
+                            <ul class="info-list">
+                                <li>
+                                    <span class="info-label">Address</span>
+                                    <span class="info-value">2200 Broadway, Redwood City, CA 94063</span>
+                                </li>
+                                <li>
+                                    <span class="info-label">Phone</span>
+                                    <span class="info-value">(650) 299-0104</span>
+                                </li>
+                                <li>
+                                    <span class="info-label">Website</span>
+                                    <span class="info-value"><a href="https://historysmc.org" target="_blank">historysmc.org</a></span>
+                                </li>
+                                <li>
+                                    <span class="info-label">Opening Hours</span>
+                                    <span class="info-value">Tue-Sun: 10am-4pm<br>Closed on Mondays</span>
+                                </li>
+                                <li>
+                                    <span class="info-label">Admission</span>
+                                    <span class="info-value">
+                                        $6 Adults<br>
+                                        $4 Seniors/Students<br>
+                                        Free for children under 5<br>
+                                        Free for all on first Friday of each month
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="info-label">Recommended Duration</span>
+                                    <span class="info-value">1-2 hours</span>
+                                </li>
+                                <li>
+                                    <span class="info-label">Age Suitability</span>
+                                    <span class="info-value">All ages; best for 8+</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Amenities Card -->
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <h3>Amenities & Accessibility</h3>
+                        </div>
+                        <div class="info-card-body">
+                            <ul class="info-list">
+                                <li>
+                                    <span class="info-label">Gift Shop</span>
+                                    <span class="info-value">Yes</span>
+                                </li>
+                                <li>
+                                    <span class="info-label">Restrooms</span>
+                                    <span class="info-value">Available</span>
+                                </li>
+                                <li>
+                                    <span class="info-label">Guided Tours</span>
+                                    <span class="info-value">Available upon request</span>
+                                </li>
+                                <li>
+                                    <span class="info-label">Wheelchair Access</span>
+                                    <span class="info-value">Full access</span>
+                                </li>
+                                <li>
+                                    <span class="info-label">Photography</span>
+                                    <span class="info-value">Allowed (no flash)</span>
+                                </li>
+                                <li>
+                                    <span class="info-label">Parking</span>
+                                    <span class="info-value">Nearby public lots</span>
+                                </li>
+                                <li>
+                                    <span class="info-label">Public Transit</span>
+                                    <span class="info-value">Caltrain station within walking distance</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Map Container -->
+                    <div id="map" class="map-container">
+                        <div class="map-header">
+                            <h3>Location & Directions</h3>
+                        </div>
+                        <div class="map-body">
+                            <img src="/api/placeholder/600/400" alt="Map showing museum location">
+                        </div>
+                        <div class="map-footer">
+                            <p><strong>San Mateo County History Museum</strong><br>2200 Broadway, Redwood City, CA 94063</p>
+                            <p>Located in the historic courthouse in downtown Redwood City, at the corner of Broadway and Hamilton Street.</p>
+                            <p><a href="https://maps.google.com/?q=San+Mateo+County+History+Museum+Redwood+City+CA" target="_blank">Open in Google Maps</a></p>
+                        </div>
+                    </div>
+                    
+                    <!-- Special Events Card -->
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <h3>Upcoming Special Events</h3>
+                        </div>
+                        <div class="info-card-body">
+                            <ul class="info-list">
+                                <li>
+                                    <span class="info-label">April 5, 2025</span>
+                                    <span class="info-value">Free First Friday</span>
+                                </li>
+                                <li>
+                                    <span class="info-label">April 12, 2025</span>
+                                    <span class="info-value">Historic Photo Workshop</span>
+                                </li>
+                                <li>
+                                    <span class="info-label">April 19, 2025</span>
+                                    <span class="info-value">Children's History Day</span>
+                                </li>
+                                <li>
+                                    <span class="info-label">May 3, 2025</span>
+                                    <span class="info-value">Free First Friday</span>
+                                </li>
+                                <li>
+                                    <span class="info-label">May 15, 2025</span>
+                                    <span class="info-value">Peninsula Heritage Lecture</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <!-- Footer content would go here -->
+    </footer>
+</body>
+</html>

@@ -1,10 +1,19 @@
-import { FC } from 'react';
+import { getFreeActivitiesData } from '../../data/city-free-activities';
+import { useState } from 'react';
+import Link from 'next/link';
 
 interface FreeActivitiesProps {
   formattedCityName: string;
 }
 
-const FreeActivities: FC<FreeActivitiesProps> = ({ formattedCityName }) => {
+export default function FreeActivities({ formattedCityName }: FreeActivitiesProps) {
+  const { categories } = getFreeActivitiesData(formattedCityName);
+  const [activeCategory, setActiveCategory] = useState('All Activities');
+
+  const formatTitleForUrl = (title: string) => {
+    return title.toLowerCase().replace(/\s+/g, '-');
+  };
+
   return (
     <section id="activities" className="py-12">
       <div className="container mx-auto px-4">
@@ -19,255 +28,76 @@ const FreeActivities: FC<FreeActivitiesProps> = ({ formattedCityName }) => {
 
         <div className="activities-container">
           <div className="flex gap-4 mb-8 overflow-x-auto pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-            <div className="category-tab active px-6 py-3 rounded-[50px] text-[0.95rem] font-medium bg-primary text-white">
+            <button
+              onClick={() => setActiveCategory('All Activities')}
+              className={`px-6 py-3 rounded-[50px] text-[0.95rem] font-medium transition-colors ${
+                activeCategory === 'All Activities'
+                  ? 'bg-primary text-white'
+                  : 'bg-accent text-gray-900 hover:bg-[#e5e5e5]'
+              }`}
+            >
               All Activities
-            </div>
-            <div className="category-tab px-6 py-3 rounded-[50px] text-[0.95rem] font-medium bg-accent text-gray-900 hover:bg-[#e5e5e5] transition-colors">
-              Outdoor
-            </div>
-            <div className="category-tab px-6 py-3 rounded-[50px] text-[0.95rem] font-medium bg-accent text-gray-900 hover:bg-[#e5e5e5] transition-colors">
-              Cultural
-            </div>
-            <div className="category-tab px-6 py-3 rounded-[50px] text-[0.95rem] font-medium bg-accent text-gray-900 hover:bg-[#e5e5e5] transition-colors">
-              Community Events
-            </div>
-            <div className="category-tab px-6 py-3 rounded-[50px] text-[0.95rem] font-medium bg-accent text-gray-900 hover:bg-[#e5e5e5] transition-colors">
-              Nature & Wildlife
-            </div>
+            </button>
+            {categories.map((category) => (
+              <button
+                key={category.name}
+                onClick={() => setActiveCategory(category.name)}
+                className={`px-6 py-3 rounded-[50px] text-[0.95rem] font-medium transition-colors ${
+                  activeCategory === category.name
+                    ? 'bg-primary text-white'
+                    : 'bg-accent text-gray-900 hover:bg-[#e5e5e5]'
+                }`}
+              >
+                {category.name.split(' ')[0]}
+              </button>
+            ))}
           </div>
 
-          {/* Outdoor Activities */}
-          <div className="activities-category mb-10">
-            <div className="category-header mb-4 pb-2 border-b-2 border-primary">
-              <h3 className="category-title text-2xl font-semibold text-primary">
-                Outdoor Activities
-              </h3>
+          {categories.map((category) => (
+            <div
+              key={category.name}
+              className={`activities-category mb-10 ${
+                activeCategory !== 'All Activities' && activeCategory !== category.name ? 'hidden' : ''
+              }`}
+            >
+              <div className="category-header mb-4 pb-2 border-b-2 border-primary">
+                <h3 className="category-title text-2xl font-semibold text-primary">
+                  {category.name}
+                </h3>
+              </div>
+              <table className="w-full border-collapse bg-white rounded-xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
+                <thead className="bg-gray-100">
+                  <tr>
+                    <th className="w-[40%] text-left p-4 font-semibold text-gray-900 text-sm">
+                      Activity
+                    </th>
+                    <th className="w-[60%] text-left p-4 font-semibold text-gray-900 text-sm">
+                      Description
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {category.activities.map((activity) => (
+                    <tr key={activity.id}>
+                      <td className="p-4 border-t border-gray-200">
+                        <Link
+                          href={`/activity/${formatTitleForUrl(activity.title)}`}
+                          className="font-semibold text-gray-900 hover:text-primary transition-colors"
+                        >
+                          {activity.title}
+                        </Link>
+                      </td>
+                      <td className="p-4 border-t border-gray-200 text-gray-700 text-sm leading-relaxed">
+                        {activity.description}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-            <table className="w-full border-collapse bg-white rounded-xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
-              <thead className="bg-gray-100">
-                <tr>
-                  <th className="w-[40%] text-left p-4 font-semibold text-gray-900 text-sm">
-                    Activity
-                  </th>
-                  <th className="w-[60%] text-left p-4 font-semibold text-gray-900 text-sm">
-                    Description
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="p-4 border-t border-gray-200">
-                    <div className="font-semibold text-gray-900">Redwood City Parks</div>
-                  </td>
-                  <td className="p-4 border-t border-gray-200 text-gray-700 text-sm leading-relaxed">
-                    Explore local parks like Stafford Park, Red Morton Park, or Stulsaft Park,
-                    which offer walking trails, picnic areas, and playgrounds.
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-4 border-t border-gray-200">
-                    <div className="font-semibold text-gray-900">
-                      Edgewood Park & Natural Preserve
-                    </div>
-                  </td>
-                  <td className="p-4 border-t border-gray-200 text-gray-700 text-sm leading-relaxed">
-                    Hike through scenic trails and enjoy wildflower displays (free parking on
-                    weekdays, small fee on weekends).
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-4 border-t border-gray-200">
-                    <div className="font-semibold text-gray-900">Bair Island Aquatic Center</div>
-                  </td>
-                  <td className="p-4 border-t border-gray-200 text-gray-700 text-sm leading-relaxed">
-                    Walk or bike along the trails and enjoy views of the wetlands and wildlife.
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-4 border-t border-gray-200">
-                    <div className="font-semibold text-gray-900">Marina at Redwood City</div>
-                  </td>
-                  <td className="p-4 border-t border-gray-200 text-gray-700 text-sm leading-relaxed">
-                    Stroll along the waterfront, watch boats, and enjoy the bay views.
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-4 border-t border-gray-200">
-                    <div className="font-semibold text-gray-900">Farmers' Market</div>
-                  </td>
-                  <td className="p-4 border-t border-gray-200 text-gray-700 text-sm leading-relaxed">
-                    Visit the Redwood City Farmers' Market (Saturday mornings) for fresh produce,
-                    live music, and a lively atmosphere.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          {/* Cultural and Historical Activities */}
-          <div className="activities-category mb-10">
-            <div className="category-header mb-4 pb-2 border-b-2 border-primary">
-              <h3 className="category-title text-2xl font-semibold text-primary">
-                Cultural and Historical Activities
-              </h3>
-            </div>
-            <table className="w-full border-collapse bg-white rounded-xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
-              <thead className="bg-gray-100">
-                <tr>
-                  <th className="w-[40%] text-left p-4 font-semibold text-gray-900 text-sm">
-                    Activity
-                  </th>
-                  <th className="w-[60%] text-left p-4 font-semibold text-gray-900 text-sm">
-                    Description
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="p-4 border-t border-gray-200">
-                    <div className="font-semibold text-gray-900">
-                      San Mateo County History Museum
-                    </div>
-                  </td>
-                  <td className="p-4 border-t border-gray-200 text-gray-700 text-sm leading-relaxed">
-                    Located in the historic courthouse, this museum offers free admission on the
-                    first Friday of every month.
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-4 border-t border-gray-200">
-                    <div className="font-semibold text-gray-900">Public Art Walk</div>
-                  </td>
-                  <td className="p-4 border-t border-gray-200 text-gray-700 text-sm leading-relaxed">
-                    Explore Redwood City's downtown area to see murals, sculptures, and other
-                    public art installations.
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-4 border-t border-gray-200">
-                    <div className="font-semibold text-gray-900">Fox Theatre</div>
-                  </td>
-                  <td className="p-4 border-t border-gray-200 text-gray-700 text-sm leading-relaxed">
-                    Check for free or low-cost community events, film screenings, or performances
-                    at this historic venue.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          {/* Community Events */}
-          <div className="activities-category mb-10">
-            <div className="category-header mb-4 pb-2 border-b-2 border-primary">
-              <h3 className="category-title text-2xl font-semibold text-primary">
-                Community Events
-              </h3>
-            </div>
-            <table className="w-full border-collapse bg-white rounded-xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
-              <thead className="bg-gray-100">
-                <tr>
-                  <th className="w-[40%] text-left p-4 font-semibold text-gray-900 text-sm">
-                    Activity
-                  </th>
-                  <th className="w-[60%] text-left p-4 font-semibold text-gray-900 text-sm">
-                    Description
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="p-4 border-t border-gray-200">
-                    <div className="font-semibold text-gray-900">Concerts in the Park</div>
-                  </td>
-                  <td className="p-4 border-t border-gray-200 text-gray-700 text-sm leading-relaxed">
-                    During the summer, enjoy free outdoor concerts at Courthouse Square.
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-4 border-t border-gray-200">
-                    <div className="font-semibold text-gray-900">Library Programs</div>
-                  </td>
-                  <td className="p-4 border-t border-gray-200 text-gray-700 text-sm leading-relaxed">
-                    The Redwood City Public Library hosts free events, including storytimes,
-                    workshops, and author talks.
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-4 border-t border-gray-200">
-                    <div className="font-semibold text-gray-900">Festivals and Street Fairs</div>
-                  </td>
-                  <td className="p-4 border-t border-gray-200 text-gray-700 text-sm leading-relaxed">
-                    Look for free community events like the Redwood City Salsa Festival or Holiday
-                    Parades.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          {/* Nature and Wildlife */}
-          <div className="activities-category mb-10">
-            <div className="category-header mb-4 pb-2 border-b-2 border-primary">
-              <h3 className="category-title text-2xl font-semibold text-primary">
-                Nature and Wildlife
-              </h3>
-            </div>
-            <table className="w-full border-collapse bg-white rounded-xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
-              <thead className="bg-gray-100">
-                <tr>
-                  <th className="w-[40%] text-left p-4 font-semibold text-gray-900 text-sm">
-                    Activity
-                  </th>
-                  <th className="w-[60%] text-left p-4 font-semibold text-gray-900 text-sm">
-                    Description
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="p-4 border-t border-gray-200">
-                    <div className="font-semibold text-gray-900">
-                      Pulgas Ridge Open Space Preserve
-                    </div>
-                  </td>
-                  <td className="p-4 border-t border-gray-200 text-gray-700 text-sm leading-relaxed">
-                    Hike the trails and enjoy panoramic views of the Bay Area.
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-4 border-t border-gray-200">
-                    <div className="font-semibold text-gray-900">Canoeing or Kayaking</div>
-                  </td>
-                  <td className="p-4 border-t border-gray-200 text-gray-700 text-sm leading-relaxed">
-                    Rent an affordable kayak or paddleboard at the Marina for a fun day on the
-                    water.
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-4 border-t border-gray-200">
-                    <div className="font-semibold text-gray-900">Downtown Exploration</div>
-                  </td>
-                  <td className="p-4 border-t border-gray-200 text-gray-700 text-sm leading-relaxed">
-                    Window-shop, enjoy street performances, or grab an inexpensive treat at a
-                    local café.
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-4 border-t border-gray-200">
-                    <div className="font-semibold text-gray-900">Geocaching</div>
-                  </td>
-                  <td className="p-4 border-t border-gray-200 text-gray-700 text-sm leading-relaxed">
-                    Explore the city and nearby areas by participating in this free
-                    treasure-hunting activity.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          ))}
         </div>
       </div>
     </section>
   );
-};
-
-export default FreeActivities; 
+} 
