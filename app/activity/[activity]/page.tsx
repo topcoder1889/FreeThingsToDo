@@ -1,16 +1,140 @@
+// app/activity/[activity]/page.tsx
 'use client';
 
 import { useParams } from 'next/navigation';
-import { getActivityDetail } from '../../data/activity-details';
+import { getActivityData } from '../../lib/cities';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+
+interface ActivityData {
+  id: string;
+  city_id: string;
+  category: string;
+  building_name: string;
+  activity_description: string;
+  metadata_json: {
+    id: string;
+    info: {
+      phone: string;
+      address: string;
+      website: string;
+      admission: string;
+      openingHours: string;
+      ageSuitability: string;
+      recommendedDuration: string;
+    };
+    title: string;
+    events: Array<{
+      date: string;
+      title: string;
+    }>;
+    images: Array<{
+      alt: string;
+      url: string;
+    }>;
+    rating: {
+      staff: number;
+      value: number;
+      overall: number;
+      experience: number;
+      facilities: number;
+      reviewCount: number;
+    };
+    reviews: Array<{
+      id: string;
+      text: string;
+      rating: number;
+      visitDate: string;
+      reviewerName: string;
+      reviewerAvatar: string;
+    }>;
+    subtitle: string;
+    amenities: Array<{
+      label: string;
+      value: string;
+    }>;
+    quickInfo: {
+      price: string;
+      rating: string;
+      duration: string;
+    };
+    highlights: Array<{
+      id: string;
+      icon: string;
+      title: string;
+      description: string;
+    }>;
+    description: string;
+    nearbyAttractions: Array<{
+      id: string;
+      type: string;
+      title: string;
+      distance: string;
+      imageUrl: string;
+    }>;
+  };
+}
 
 export default function ActivityPage() {
   const params = useParams();
   const activityTitle = params.activity as string;
-  const activity = getActivityDetail(activityTitle);
+  const [activity, setActivity] = useState<ActivityData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchActivity = async () => {
+      try {
+        const response = await fetch(`/api/activities/${encodeURIComponent(activityTitle)}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch activity data');
+        }
+        const data = await response.json();
+        setActivity(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'An error occurred');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchActivity();
+  }, [activityTitle]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-100">
+        <Navbar variant="default" />
+        <div className="container mx-auto px-4 py-8">
+          <div className="animate-pulse">
+            <div className="h-8 bg-gray-200 rounded w-1/4 mb-4"></div>
+            <div className="h-4 bg-gray-200 rounded w-1/2 mb-8"></div>
+            <div className="space-y-4">
+              {[...Array(5)].map((_, i) => (
+                <div key={i} className="h-20 bg-gray-200 rounded"></div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error || !activity) {
+    return (
+      <div className="min-h-screen bg-gray-100">
+        <Navbar variant="default" />
+        <div className="container mx-auto px-4 py-8">
+          <div className="text-red-500">Error: {error || 'Activity not found'}</div>
+        </div>
+      </div>
+    );
+  }
+
+  const metadata = activity.metadata_json;
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -35,7 +159,7 @@ export default function ActivityPage() {
               Redwood City
             </Link>
             <span>/</span>
-            <span className="text-gray-900">{activity.title}</span>
+            <span className="text-gray-900">{metadata.title}</span>
           </div>
         </div>
       </div>
@@ -49,8 +173,8 @@ export default function ActivityPage() {
         <div className="absolute inset-0 flex items-center">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl text-white">
-              <h1 className="text-5xl font-bold mb-4">{activity.title}</h1>
-              <p className="text-xl mb-8">{activity.subtitle}</p>
+              <h1 className="text-5xl font-bold mb-4">{metadata.title}</h1>
+              <p className="text-xl mb-8">{metadata.subtitle}</p>
 
               <div className="flex flex-wrap gap-8 mb-10">
                 <div className="flex items-center gap-3">
@@ -58,7 +182,7 @@ export default function ActivityPage() {
                     💰
                   </div>
                   <div>
-                    <p className="font-medium">{activity.quickInfo.price}</p>
+                    <p className="font-medium">{metadata.quickInfo.price}</p>
                     <p className="text-sm opacity-80">Regular: $6 Adults, $4 Seniors/Students</p>
                   </div>
                 </div>
@@ -67,7 +191,7 @@ export default function ActivityPage() {
                     ⏱️
                   </div>
                   <div>
-                    <p className="font-medium">{activity.quickInfo.duration}</p>
+                    <p className="font-medium">{metadata.quickInfo.duration}</p>
                     <p className="text-sm opacity-80">Visit Duration</p>
                   </div>
                 </div>
@@ -76,7 +200,7 @@ export default function ActivityPage() {
                     ⭐
                   </div>
                   <div>
-                    <p className="font-medium">{activity.quickInfo.rating}</p>
+                    <p className="font-medium">{metadata.quickInfo.rating}</p>
                     <p className="text-sm opacity-80">Visitor Rating</p>
                   </div>
                 </div>
@@ -87,7 +211,7 @@ export default function ActivityPage() {
                   Get Directions
                 </a>
                 <a
-                  href={activity.info.website}
+                  href={metadata.info.website}
                   target="_blank"
                   className="inline-flex items-center justify-center py-3 px-6 rounded-full font-medium transition-all text-[0.9rem] tracking-[0.5px] border border-white text-white bg-[rgba(255,255,255,0.1)] backdrop-blur-sm hover:bg-white hover:text-primary"
                 >
@@ -106,7 +230,7 @@ export default function ActivityPage() {
               <div className="bg-white rounded-xl p-8 mb-8">
                 <h2 className="text-2xl font-semibold mb-6">About the Museum</h2>
                 <div className="prose max-w-none">
-                  {activity.description.split('\n\n').map((paragraph, index) => (
+                  {metadata.description.split('\n\n').map((paragraph, index) => (
                     <p key={index} className="mb-4">
                       {paragraph}
                     </p>
@@ -117,7 +241,7 @@ export default function ActivityPage() {
               <div className="bg-white rounded-xl p-8 mb-8">
                 <h2 className="text-2xl font-semibold mb-6">Museum Highlights</h2>
                 <div className="grid grid-cols-2 gap-6">
-                  {activity.highlights.map(highlight => (
+                  {metadata.highlights.map(highlight => (
                     <div key={highlight.id} className="bg-gray-50 rounded-lg p-6">
                       <div className="text-3xl mb-4">{highlight.icon}</div>
                       <h3 className="text-xl font-semibold mb-2">{highlight.title}</h3>
@@ -128,17 +252,36 @@ export default function ActivityPage() {
               </div>
 
               <div className="bg-white rounded-xl p-8 mb-8">
+                <h2 className="text-2xl font-semibold mb-6 flex items-center gap-3">
+                  <span className="text-primary">📷</span>
+                  Photo Gallery
+                </h2>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  {metadata.images.map((image, index) => (
+                    <div key={index} className="relative aspect-[4/3] rounded-lg overflow-hidden">
+                      <Image
+                        src={image.url}
+                        alt={image.alt}
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="bg-white rounded-xl p-8 mb-8">
                 <h2 className="text-2xl font-semibold mb-6">Visitor Reviews</h2>
                 <div className="flex items-center gap-8 mb-8">
                   <div className="text-center">
-                    <div className="text-4xl font-bold">{activity.rating.overall}</div>
+                    <div className="text-4xl font-bold">{metadata.rating.overall}</div>
                     <div className="text-yellow-500 text-2xl">★★★★★</div>
                     <div className="text-sm text-gray-600">
-                      Based on {activity.rating.reviewCount} reviews
+                      Based on {metadata.rating.reviewCount} reviews
                     </div>
                   </div>
                   <div className="flex-1">
-                    {Object.entries(activity.rating).map(([key, value]) => {
+                    {Object.entries(metadata.rating).map(([key, value]) => {
                       if (key === 'overall' || key === 'reviewCount') return null;
                       return (
                         <div key={key} className="flex items-center gap-4 mb-2">
@@ -156,7 +299,7 @@ export default function ActivityPage() {
                   </div>
                 </div>
                 <div className="space-y-6">
-                  {activity.reviews.map(review => (
+                  {metadata.reviews.map(review => (
                     <div key={review.id} className="border-b border-gray-200 pb-6 last:border-0">
                       <div className="flex justify-between items-start mb-4">
                         <div className="flex items-center gap-4">
@@ -183,7 +326,7 @@ export default function ActivityPage() {
               <div className="bg-white rounded-xl p-8">
                 <h2 className="text-2xl font-semibold mb-6">Nearby Attractions</h2>
                 <div className="grid grid-cols-2 gap-6">
-                  {activity.nearbyAttractions.map(attraction => (
+                  {metadata.nearbyAttractions.map(attraction => (
                     <div key={attraction.id} className="flex gap-4 bg-gray-50 rounded-lg p-4">
                       <div className="w-20 h-20 rounded-lg overflow-hidden">
                         <Image
@@ -214,41 +357,41 @@ export default function ActivityPage() {
                   <ul className="space-y-4">
                     <li>
                       <span className="text-sm text-gray-600 block">Address</span>
-                      <span className="font-medium">{activity.info.address}</span>
+                      <span className="font-medium">{metadata.info.address}</span>
                     </li>
                     <li>
                       <span className="text-sm text-gray-600 block">Phone</span>
-                      <span className="font-medium">{activity.info.phone}</span>
+                      <span className="font-medium">{metadata.info.phone}</span>
                     </li>
                     <li>
                       <span className="text-sm text-gray-600 block">Website</span>
                       <a
-                        href={activity.info.website}
+                        href={metadata.info.website}
                         target="_blank"
                         className="font-medium text-primary hover:underline"
                       >
-                        {activity.info.website}
+                        {metadata.info.website}
                       </a>
                     </li>
                     <li>
                       <span className="text-sm text-gray-600 block">Opening Hours</span>
                       <span className="font-medium whitespace-pre-line">
-                        {activity.info.openingHours}
+                        {metadata.info.openingHours}
                       </span>
                     </li>
                     <li>
                       <span className="text-sm text-gray-600 block">Admission</span>
                       <span className="font-medium whitespace-pre-line">
-                        {activity.info.admission}
+                        {metadata.info.admission}
                       </span>
                     </li>
                     <li>
                       <span className="text-sm text-gray-600 block">Recommended Duration</span>
-                      <span className="font-medium">{activity.info.recommendedDuration}</span>
+                      <span className="font-medium">{metadata.info.recommendedDuration}</span>
                     </li>
                     <li>
                       <span className="text-sm text-gray-600 block">Age Suitability</span>
-                      <span className="font-medium">{activity.info.ageSuitability}</span>
+                      <span className="font-medium">{metadata.info.ageSuitability}</span>
                     </li>
                   </ul>
                 </div>
@@ -260,7 +403,7 @@ export default function ActivityPage() {
                 </div>
                 <div className="p-6">
                   <ul className="space-y-4">
-                    {activity.amenities.map((amenity, index) => (
+                    {metadata.amenities.map((amenity, index) => (
                       <li key={index} className="flex justify-between">
                         <span className="text-gray-600">{amenity.label}</span>
                         <span className="font-medium">{amenity.value}</span>
@@ -276,21 +419,21 @@ export default function ActivityPage() {
                 </div>
                 <div className="h-64 bg-gray-200">
                   <Image
-                    src="/api/placeholder/600/400"
-                    alt="Map"
-                    width={600}
+                    src="https://static-maps.yandex.ru/1.x/?lang=en-US&ll=-122.2355,37.4885&z=15&l=map&size=800,400"
+                    alt="Map showing museum location"
+                    width={800}
                     height={400}
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="p-4">
-                  <p className="font-medium mb-2">{activity.info.address}</p>
+                  <p className="font-medium mb-2">{metadata.info.address}</p>
                   <p className="text-sm text-gray-600 mb-4">
                     Located in the historic courthouse in downtown Redwood City, at the corner of
                     Broadway and Hamilton Street.
                   </p>
                   <a
-                    href={`https://maps.google.com/?q=${encodeURIComponent(activity.info.address)}`}
+                    href={`https://maps.google.com/?q=${encodeURIComponent(metadata.info.address)}`}
                     target="_blank"
                     className="text-primary hover:underline"
                   >
@@ -305,7 +448,7 @@ export default function ActivityPage() {
                 </div>
                 <div className="p-6">
                   <ul className="space-y-4">
-                    {activity.events.map((event, index) => (
+                    {metadata.events.map((event, index) => (
                       <li key={index} className="flex justify-between">
                         <span className="text-gray-600">{event.date}</span>
                         <span className="font-medium">{event.title}</span>

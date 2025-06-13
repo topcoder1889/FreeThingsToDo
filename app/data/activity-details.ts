@@ -54,6 +54,10 @@ export interface ActivityReview {
       rating: string;
     };
     highlights: ActivityHighlight[];
+    images: {
+      url: string;
+      alt: string;
+    }[];
     rating: ActivityRating;
     reviews: ActivityReview[];
     info: ActivityInfo;
@@ -114,6 +118,32 @@ export interface ActivityReview {
             "Interactive exhibits that recreate historic businesses, including a general store, a barbershop, and other establishments from the county's past.",
         },
       ],
+      images: [
+        {
+          url: 'https://picsum.photos/seed/museum1/800/600',
+          alt: 'Museum Exterior'
+        },
+        {
+          url: 'https://picsum.photos/seed/museum2/800/600',
+          alt: 'Courtroom Exhibit'
+        },
+        {
+          url: 'https://picsum.photos/seed/museum3/800/600',
+          alt: 'Rotunda with Stained Glass Dome'
+        },
+        {
+          url: 'https://picsum.photos/seed/museum4/800/600',
+          alt: 'Historic Artifacts Display'
+        },
+        {
+          url: 'https://picsum.photos/seed/museum5/800/600',
+          alt: 'Interactive Exhibit'
+        },
+        {
+          url: 'https://picsum.photos/seed/museum6/800/600',
+          alt: 'Museum Gift Shop'
+        }
+      ],
       rating: {
         overall: 4.7,
         experience: 4.8,
@@ -126,7 +156,7 @@ export interface ActivityReview {
         {
           id: '1',
           reviewerName: 'Susan M.',
-          reviewerAvatar: '/api/placeholder/100/100',
+          reviewerAvatar: 'https://api.dicebear.com/7.x/avataaars/png?seed=SusanM&size=100',
           visitDate: 'March 2025',
           rating: 5,
           text: "What a hidden gem! The building itself is worth the visit, but the exhibits really bring the county's history to life. The volunteers were so knowledgeable and eager to share stories. Don't miss the stained glass dome in the rotunda - absolutely breathtaking. Definitely plan to visit on the first Friday of the month for free admission!",
@@ -134,7 +164,7 @@ export interface ActivityReview {
         {
           id: '2',
           reviewerName: 'James T.',
-          reviewerAvatar: '/api/placeholder/100/100',
+          reviewerAvatar: 'https://api.dicebear.com/7.x/avataaars/png?seed=JamesT&size=100',
           visitDate: 'January 2025',
           rating: 4,
           text: "A great way to spend a rainy afternoon. The interactive exhibits were engaging for my kids, and I learned quite a bit about local history I hadn't known. The old courtroom was particularly interesting. My only minor complaint is that some of the text panels were a bit small to read. Otherwise, a fascinating museum that's definitely worth a visit.",
@@ -172,28 +202,28 @@ export interface ActivityReview {
           title: 'Courthouse Square',
           distance: '1 minute walk',
           type: 'Public Space',
-          imageUrl: '/api/placeholder/200/200',
+          imageUrl: 'https://picsum.photos/seed/courthouse/200/200',
         },
         {
           id: '2',
           title: 'Fox Theatre',
           distance: '5 minute walk',
           type: 'Entertainment',
-          imageUrl: '/api/placeholder/200/200',
+          imageUrl: 'https://picsum.photos/seed/fox/200/200',
         },
         {
           id: '3',
           title: 'Public Art Walk',
           distance: 'Starting nearby',
           type: 'Cultural',
-          imageUrl: '/api/placeholder/200/200',
+          imageUrl: 'https://picsum.photos/seed/art/200/200',
         },
         {
           id: '4',
           title: 'Redwood City Public Library',
           distance: '7 minute walk',
           type: 'Education',
-          imageUrl: '/api/placeholder/200/200',
+          imageUrl: 'https://picsum.photos/seed/library/200/200',
         },
       ],
     },

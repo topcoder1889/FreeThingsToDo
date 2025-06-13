@@ -7,7 +7,6 @@ interface AllCitiesProps {
 }
 
 const AllCities: React.FC<AllCitiesProps> = ({ countryName }) => {
-  // Group cities by their first letter
   const citiesByLetter = cities.reduce(
     (acc, city) => {
       if (!acc[city.letter]) {
@@ -18,6 +17,10 @@ const AllCities: React.FC<AllCitiesProps> = ({ countryName }) => {
     },
     {} as Record<string, typeof cities>
   );
+
+  const formatCityUrl = (cityName: string) => {
+    return cityName.toLowerCase().replace(/\s+/g, '-');
+  };
 
   return (
     <section className="all-cities py-12 bg-gray-100">
@@ -33,8 +36,32 @@ const AllCities: React.FC<AllCitiesProps> = ({ countryName }) => {
           <div className="city-filters flex flex-col gap-4 mb-8">
             <div className="alphabet-filter flex flex-wrap gap-2 pb-4 border-b border-gray-200">
               {[
-                'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
-                'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+                'A',
+                'B',
+                'C',
+                'D',
+                'E',
+                'F',
+                'G',
+                'H',
+                'I',
+                'J',
+                'K',
+                'L',
+                'M',
+                'N',
+                'O',
+                'P',
+                'Q',
+                'R',
+                'S',
+                'T',
+                'U',
+                'V',
+                'W',
+                'X',
+                'Y',
+                'Z',
               ].map(letter => (
                 <a
                   key={letter}
@@ -98,7 +125,7 @@ const AllCities: React.FC<AllCitiesProps> = ({ countryName }) => {
                   {letterCities.map(city => (
                     <Link
                       key={city.id}
-                      href={`/city/${city.id}`}
+                      href={`/city/${formatCityUrl(city.name)}`}
                       className="city-item block p-4 bg-gray-100 rounded-lg transition-all hover:bg-primary hover:text-white hover:-translate-y-1 hover:shadow-md"
                     >
                       <div className="city-name font-medium mb-1">{city.name}</div>
@@ -130,4 +157,4 @@ const AllCities: React.FC<AllCitiesProps> = ({ countryName }) => {
   );
 };
 
-export default AllCities; 
+export default AllCities;

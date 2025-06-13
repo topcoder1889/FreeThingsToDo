@@ -15,7 +15,18 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'upload.wikimedia.org',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'api.dicebear.com',
+        pathname: '/**',
+      }
     ],
+    domains: ['picsum.photos', 'api.dicebear.com', 'www.openstreetmap.org', 'static-maps.yandex.ru', 'example.com', 'images.unsplash.com'],
   },
 };
 

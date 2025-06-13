@@ -14,7 +14,7 @@ const ActivitiesMap: FC<ActivitiesMapProps> = ({ formattedCityName }) => {
           </h3>
           <div className="relative rounded-xl overflow-hidden mb-6 shadow-[0_4px_15px_rgba(0,0,0,0.1)]">
             <img
-              src="/api/placeholder/1200/500"
+              src="https://placehold.co/1200x500/e9ecef/333333?text=Redwood+City+Map+Placeholder"
               alt={`Map of ${formattedCityName} Activities`}
               className="w-full h-auto"
             />
@@ -75,4 +75,4 @@ const ActivitiesMap: FC<ActivitiesMapProps> = ({ formattedCityName }) => {
   );
 };
 
-export default ActivitiesMap; 
+export default ActivitiesMap;

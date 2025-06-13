@@ -1,0 +1,2093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redwood City, CA | Free Things To Do</title>
+    <style>
+        /* Updated Color Scheme */
+:root {
+    --primary: #3a8bbb; /* Main blue */
+    --secondary: #2c3e50; /* Dark blue/charcoal */
+    --accent: #f5f5f5; /* Light gray for backgrounds/accents */
+    --light: #ffffff; /* White */
+    --dark: #333333; /* Dark text color */
+    --success: #6bc7b8; /* Teal for success messages */
+    --warning: #f5a623; /* Orange for warnings */
+    --gray-100: #f8f9fa;
+    --gray-200: #e9ecef;
+    --gray-300: #dee2e6;
+    --font-main: 'Inter', 'Segoe UI', sans-serif; /* Modern, clean font */
+    --box-shadow: 0 8px 30px rgba(0,0,0,0.08); /* Softer, more diffused shadow */
+    --transition: all 0.3s ease;
+    --primary-rgb: 58, 139, 187; /* RGB for rgba usage */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    line-height: 1.6;
+    color: var(--dark);
+    background-color: #ffffff; /* Changed from var(--accent) to white for main background */
+    font-weight: 400;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+body.menu-open {
+    overflow: hidden; /* Prevent scrolling when mobile menu is open */
+}
+
+.container {
+    width: 90%;
+    max-width: 1340px; /* Slightly increased max-width for wider screens */
+    margin: 0 auto;
+    padding: 0 20px; /* Added horizontal padding */
+}
+
+/* Header Styling */
+header {
+    background-color: transparent; /* Make header transparent initially */
+    position: absolute; /* Position over hero */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 20px 0; /* Vertical padding */
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0; /* Use rem for scalable padding */
+    position: relative;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+.logo h1 {
+    font-size: 1.75rem; /* Slightly larger logo text */
+    color: white; /* Logo text color for hero */
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.hamburger {
+    display: none; /* Hidden by default, shown in media query */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    z-index: 100; /* Ensure it's above nav */
+}
+
+.hamburger span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: white; /* Hamburger lines color */
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+nav {
+    transition: all 0.3s ease; /* Smooth transition for mobile menu */
+}
+
+nav ul {
+    display: flex;
+    gap: 2.5rem; /* Increased gap for better spacing */
+    list-style: none;
+}
+
+nav a {
+    text-decoration: none;
+    color: white; /* Nav link color for hero */
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: var(--transition);
+    letter-spacing: 0.5px; /* Added letter spacing */
+}
+
+nav a:hover {
+    color: var(--accent); /* Hover color for nav links */
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px; /* Pill-shaped buttons */
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    display: inline-flex; /* For icon alignment */
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-outline {
+    border: 1px solid white;
+    color: white;
+    background-color: rgba(255,255,255,0.1); /* Subtle background for outline button */
+    backdrop-filter: blur(5px); /* Frosted glass effect */
+}
+
+.btn-outline:hover {
+    background-color: white;
+    color: var(--primary);
+}
+
+.btn-primary {
+    background-color: white; /* Primary button on hero */
+    color: var(--primary);
+    border: 1px solid white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary); /* Inverted colors on hover */
+    color: white;
+    border-color: var(--primary);
+}
+
+/* For buttons not on hero */
+.btn-dark {
+    background-color: var(--dark);
+    color: white;
+    border: 1px solid var(--dark);
+}
+.btn-dark:hover {
+    background-color: #444; /* Slightly lighter dark */
+    border-color: #444;
+}
+
+.btn-accent {
+    background-color: var(--accent);
+    color: var(--dark);
+    border: 1px solid var(--accent);
+}
+.btn-accent:hover {
+    background-color: #e5e5e5; /* Darker accent */
+    border-color: #e5e5e5;
+}
+
+
+.btn-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.icon { /* Simple icon styling */
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    line-height: 1; /* Ensure icon is centered if using text/emoji */
+}
+
+
+/* City Hero Section */
+.city-hero {
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('https://res.cloudinary.com/simpleview/image/upload/v1529100229/clients/sanmateoca/Downtown_RedwoodCity_Sign_SanMateoCounty_SiliconValley_a6da8469-e804-4c8d-9f87-fe77c733c027.jpg') center/cover no-repeat;
+    color: white;
+    padding: 12rem 0 6rem; /* Increased top padding */
+    position: relative;
+    height: 70vh; /* Viewport height */
+    min-height: 500px; /* Minimum height */
+    display: flex;
+    align-items: center; /* Vertically center content */
+}
+
+.city-info-container {
+    width: 100%;
+    position: relative;
+    z-index: 2; /* Above potential pseudo-elements */
+}
+
+.breadcrumb {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.8);
+}
+.breadcrumb a {
+    color: white;
+    text-decoration: none;
+}
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+.breadcrumb .separator {
+    color: rgba(255,255,255,0.6);
+}
+
+.city-title {
+    font-size: 4rem; /* Large, impactful title */
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+
+.city-tagline {
+    font-size: 1.5rem;
+    font-weight: 300; /* Lighter weight for tagline */
+    margin-bottom: 2rem;
+    max-width: 70%; /* Prevent tagline from being too wide */
+}
+
+.city-quick-stats {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+}
+.stat-item {
+    display: flex;
+    flex-direction: column;
+}
+.stat-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+.stat-label {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.8);
+}
+
+.city-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem; /* Spacing for action buttons */
+}
+
+/* Quick Navigation */
+.quick-nav {
+    background-color: white;
+    box-shadow: var(--box-shadow);
+    margin-top: -2rem; /* Overlap with hero */
+    margin-bottom: 4rem; /* Space before next section */
+    border-radius: 16px; /* Rounded corners */
+    position: relative;
+    z-index: 10; /* Above hero image */
+}
+.quick-nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem; /* Padding inside the nav bar */
+}
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    overflow-x: auto; /* Allow horizontal scrolling on small screens */
+    padding: 1.25rem 0; /* Vertical padding for links */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+.nav-links::-webkit-scrollbar { /* Hide scrollbar for Chrome, Safari, Opera */
+    display: none;
+}
+.nav-links a {
+    color: var(--dark);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap; /* Prevent links from wrapping */
+    padding: 0.5rem 1rem; /* Padding for link hit area */
+    border-radius: 50px; /* Pill shape for links */
+    transition: var(--transition);
+}
+.nav-links a:hover, .nav-links a.active {
+    background-color: var(--accent); /* Subtle background on hover/active */
+}
+.nav-links a.active {
+    color: var(--primary); /* Highlight active link */
+    font-weight: 600;
+}
+.quick-actions {
+    display: flex;
+    gap: 1rem;
+    padding-left: 1rem; /* Space from nav links */
+    border-left: 1px solid #eee; /* Separator line */
+}
+
+/* Section Styling */
+section {
+    padding: 4rem 0;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: #666; /* Softer color for subtitle */
+    margin-bottom: 2.5rem;
+    max-width: 700px; /* Limit width for readability */
+}
+
+.section-header {
+    margin-bottom: 3rem; /* Space below header before content */
+}
+
+/* City Overview */
+.city-overview {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start; /* Align items to the top */
+    margin-bottom: -2rem; /* Adjust for card overlap */
+}
+.overview-content {
+    flex: 2; /* Content takes more space */
+}
+.overview-content p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+.overview-sidebar {
+    flex: 1; /* Sidebar takes less space */
+}
+.sidebar-card {
+    background-color: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    margin-bottom: 2rem; /* Space between cards if multiple */
+}
+.sidebar-card-header {
+    background-color: var(--primary);
+    color: white;
+    padding: 1.25rem;
+}
+.sidebar-card-header h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+.sidebar-card-body {
+    padding: 1.5rem;
+}
+.info-list {
+    list-style: none;
+}
+.info-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #eee; /* Subtle separator */
+}
+.info-list li:last-child {
+    border-bottom: none;
+}
+.info-label {
+    color: #666;
+    font-size: 0.9rem;
+}
+.info-value {
+    font-weight: 500;
+}
+
+/* Activities - Redesigned as table */
+.activities-container {
+    position: relative; /* For potential absolute positioned elements */
+}
+
+.category-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    overflow-x: auto; /* Horizontal scroll for tabs */
+    padding-bottom: 0.5rem; /* Space for scrollbar if visible */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.category-tabs::-webkit-scrollbar {
+    display: none;
+}
+.category-tab {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--accent);
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--dark);
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+.category-tab:hover {
+    background-color: #e5e5e5; /* Darker accent on hover */
+}
+.category-tab.active {
+    background-color: var(--primary);
+    color: white;
+}
+
+/* Activities Categories */
+.activities-category {
+    margin-bottom: 2.5rem;
+}
+.category-header {
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--primary); /* Primary color accent */
+    padding-bottom: 0.5rem;
+}
+.category-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+/* Activities Table */
+.activities-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 12px; /* Rounded corners for table */
+    overflow: hidden; /* Clip content to border-radius */
+    box-shadow: var(--box-shadow);
+}
+.activities-table thead {
+    background-color: var(--gray-100); /* Light gray for header */
+}
+.activities-table th {
+    text-align: left;
+    padding: 1rem;
+    font-weight: 600;
+    color: var(--dark);
+    font-size: 0.9rem;
+}
+.activities-table td {
+    padding: 1rem;
+    border-top: 1px solid var(--gray-200); /* Separator for rows */
+    vertical-align: top; /* Align content to top of cell */
+}
+.activity-name {
+    font-weight: 600;
+    color: var(--dark);
+    font-size: 1rem;
+}
+.activity-location-cell { /* If you add location column */
+    color: #666;
+    font-size: 0.9rem;
+}
+.activity-description-cell {
+    color: #444;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+.activity-tags { /* For tags within a cell */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.activity-tag {
+    font-size: 0.75rem;
+    background-color: var(--accent);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    color: #666;
+}
+
+/* Activities Map */
+.activities-map {
+    padding: 2rem 0 4rem; /* Adjusted padding */
+    background-color: var(--gray-100); /* Light background for section */
+}
+.map-container {
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+}
+.map-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--dark);
+    text-align: center;
+}
+.map-wrapper {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Inner shadow for map */
+}
+.activities-map-image {
+    width: 100%;
+    height: auto;
+    display: block; /* Remove bottom space */
+}
+.map-overlay { /* For placing pins */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.map-pin {
+    position: absolute;
+    transform: translate(-50%, -100%); /* Center pin above point */
+}
+.map-pin-dot {
+    width: 16px;
+    height: 16px;
+    background-color: var(--primary);
+    border-radius: 50%;
+    border: 3px solid white; /* White border for contrast */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 2;
+}
+.map-pin-label {
+    background-color: rgba(255,255,255,0.9); /* Semi-transparent label */
+    color: var(--dark);
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    white-space: nowrap;
+    position: absolute;
+    top: -30px; /* Position above dot */
+    left: 50%;
+    transform: translateX(-50%);
+}
+.map-legend {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap; /* Allow legend items to wrap */
+    margin-top: 1.5rem;
+}
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+.legend-outdoor { background-color: #3a8bbb; }
+.legend-cultural { background-color: #e67e22; }
+.legend-events { background-color: #27ae60; }
+.legend-nature { background-color: #9b59b6; }
+.legend-text {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Itineraries */
+.itineraries {
+    background-color: var(--gray-100); /* Consistent background */
+}
+.itinerary-tabs {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 2rem;
+    gap: 2rem; /* Space between tabs */
+}
+.itinerary-tab {
+    padding: 1rem 0; /* Vertical padding, horizontal comes from gap */
+    font-weight: 500;
+    color: #666;
+    cursor: pointer;
+    position: relative; /* For active indicator */
+}
+.itinerary-tab.active {
+    color: var(--primary);
+}
+.itinerary-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; /* Align with border-bottom */
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary);
+}
+.itinerary-content {
+    display: flex;
+    gap: 3rem;
+}
+.itinerary-map {
+    flex: 1;
+    height: 400px;
+    background-color: #eee; /* Placeholder background */
+    border-radius: 16px;
+    overflow: hidden;
+}
+.itinerary-details {
+    flex: 1;
+}
+.itinerary-timeline {
+    list-style: none;
+    position: relative;
+    padding-left: 30px; /* Space for timeline line and dots */
+}
+.itinerary-timeline::before { /* Timeline vertical line */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10px; /* Centered with dot */
+    height: 100%;
+    width: 2px;
+    background-color: #ddd;
+}
+.itinerary-item {
+    position: relative;
+    padding-bottom: 2rem; /* Space between items */
+}
+.itinerary-item::before { /* Timeline dot */
+    content: '';
+    position: absolute;
+    top: 0; /* Align with top of item text */
+    left: -30px; /* Position to the left of padding */
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    border: 3px solid white; /* Create "cutout" effect */
+    box-shadow: 0 0 0 2px var(--primary); /* Outer ring */
+}
+.itinerary-time {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 0.25rem;
+}
+.itinerary-item-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+.itinerary-description {
+    font-size: 0.95rem;
+    color: #444;
+}
+
+/* Neighborhoods Section */
+.neighborhoods {
+    /* background-color: white; */ /* Or var(--gray-100) if preferred */
+}
+.neighborhoods-summary {
+    margin-bottom: 3rem;
+}
+.neighborhoods-intro {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2.5rem;
+    max-width: 800px;
+    /* text-align: center; */ /* Optional: if you want intro centered */
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+}
+.neighborhood-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 2rem;
+}
+.neighborhood-summary { /* Individual neighborhood card */
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: var(--box-shadow);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column; /* Align icon and content vertically */
+    align-items: center; /* Center icon */
+    text-align: center; /* Center text */
+    transition: var(--transition);
+}
+.neighborhood-summary:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.1);
+}
+.neighborhood-icon {
+    font-size: 2.5rem; /* Larger icon */
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: rgba(var(--primary-rgb), 0.1); /* Light primary background */
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+}
+.neighborhood-content {
+    /* No specific styles needed if text-align: center on parent */
+}
+.neighborhood-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--dark);
+}
+.neighborhood-description {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+.neighborhood-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center; /* Center tags */
+}
+.neighborhood-feature {
+    font-size: 0.8rem;
+    background-color: var(--accent);
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    color: #555;
+}
+
+
+/* Merged Practical Information & Insights */
+.practical-insights {
+    background-color: var(--gray-100);
+}
+
+.insights-tabs-container { /* Wrapper for tabs for centering or styling */
+    display: flex;
+    justify-content: center; /* Center tabs */
+    margin-bottom: 2.5rem;
+}
+
+.insights-tabs {
+    display: flex;
+    gap: 0.5rem; /* Reduced gap for tighter tab group */
+    background-color: white;
+    padding: 0.5rem;
+    border-radius: 50px; /* Pill shape for the whole tab group */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.insights-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.insights-tab {
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px; /* Pill shape for individual tabs */
+    font-size: 0.9rem; /* Slightly smaller font for tabs */
+    font-weight: 500;
+    color: var(--dark);
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+    border: 1px solid transparent; /* For smooth transition */
+}
+
+.insights-tab:hover {
+    background-color: var(--accent);
+    color: var(--primary);
+}
+
+.insights-tab.active {
+    background-color: var(--primary);
+    color: white;
+    box-shadow: 0 2px 8px rgba(var(--primary-rgb), 0.3);
+}
+
+.insights-content-panel { /* Class for content panels to be shown/hidden */
+    display: none; /* Hidden by default */
+    animation: fadeIn 0.5s ease; /* Simple fade-in animation */
+}
+.insights-content-panel.active {
+    display: block; /* Shown when active */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+.practical-grid, .data-grid { /* Shared style for grids in this section */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Responsive grid */
+    gap: 2rem;
+}
+
+.info-card, .data-card { /* Shared style for cards */
+    background-color: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    height: 100%; /* Ensure cards in a row have same height if content varies */
+    display: flex;
+    flex-direction: column; /* Ensure footer sticks to bottom if added */
+}
+
+.info-card-header, .data-card-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.info-icon, .data-icon { /* Icon styling for cards */
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(var(--primary-rgb), 0.1); /* Light primary background */
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem; /* Icon size */
+    flex-shrink: 0; /* Prevent icon from shrinking */
+}
+
+.info-card-header h3, .data-card-header h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0; /* Remove default margin */
+}
+
+.info-card-body, .data-card-body {
+    padding: 1.5rem;
+    flex-grow: 1; /* Allow body to take available space */
+}
+
+.info-card-body p, .data-card-body p {
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    color: #444;
+}
+
+.info-card-body ul, .data-card-body ul {
+    list-style: none;
+    padding-left: 0; /* Remove default padding */
+}
+
+.info-card-body li, .data-card-body li {
+    padding: 0.6rem 0; /* Adjusted padding */
+    display: flex;
+    align-items: flex-start; /* Align icon/bullet with first line of text */
+    gap: 0.75rem;
+    border-bottom: 1px solid #f0f0f0; /* Lighter border */
+    font-size: 0.95rem;
+}
+.info-card-body li:last-child, .data-card-body li:last-child {
+    border-bottom: none;
+}
+
+/* Specific styling for list items with a "bullet" */
+.info-card-body li.bullet-item::before, .data-card-body li.bullet-item::before {
+    content: '•';
+    color: var(--primary);
+    font-weight: bold;
+    margin-right: 0.5rem; /* Consistent with gap */
+    flex-shrink: 0;
+}
+/* For lists that don't use the ::before bullet (e.g. reference links) */
+.data-card-body li strong { /* For labels in data lists */
+    display: block;
+    color: #555;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+}
+.data-card-body li a {
+    color: var(--primary);
+    text-decoration: none;
+    word-break: break-all; /* Prevent long URLs from breaking layout */
+}
+.data-card-body li a:hover {
+    text-decoration: underline;
+}
+
+
+/* Local Insights Grid */
+.insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 2rem;
+}
+
+.insight-card {
+    background-color: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    height: 100%; /* Ensure cards in a row have same height */
+    display: flex; /* For potential image + content structure */
+    flex-direction: column;
+}
+
+.insight-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+}
+
+.insight-content h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--dark);
+}
+
+.insight-content p {
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.7;
+}
+
+/* Related Cities */
+.related-cities-carousel {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    padding: 1rem 0.5rem; /* Padding for shadow visibility and touch */
+    scroll-behavior: smooth; /* Smooth scrolling for buttons */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+.related-cities-carousel::-webkit-scrollbar { /* Hide scrollbar */
+    display: none;
+}
+
+.related-city-card {
+    flex: 0 0 280px; /* Fixed width for cards, prevent shrinking */
+    background-color: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+}
+.related-city-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1); /* Enhanced shadow on hover */
+}
+.related-city-image {
+    height: 160px;
+    background-size: cover;
+    background-position: center;
+}
+.related-city-content {
+    padding: 1.25rem;
+}
+.related-city-content h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--dark);
+}
+.related-city-content p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1rem; /* Space before distance */
+    /* Limit text lines if needed */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Show 2 lines of text */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 2.7em; /* 0.9rem * 1.5 line-height * 2 lines */
+}
+.city-distance {
+    font-size: 0.85rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.carousel-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+.carousel-control {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white;
+    border: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+}
+.carousel-control:hover {
+    background-color: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* Call to Action */
+.cta {
+    background: linear-gradient(rgba(var(--primary-rgb),0.85), rgba(var(--secondary-rgb, 44, 62, 80),0.85)), url('https://images.unsplash.com/photo-1582767756089-a7a1158fad9e?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+    /* Fallback if secondary-rgb is not defined */
+    /* background: linear-gradient(rgba(58, 139, 187,0.85), rgba(44, 62, 80,0.85)), url('...') center/cover no-repeat; */
+    text-align: center;
+    padding: 6rem 2rem; /* Responsive padding */
+    color: white;
+    border-radius: 20px; /* Rounded corners */
+    margin: 4rem 0; /* Vertical margin */
+}
+.cta h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+.cta p {
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 2.5rem;
+    font-weight: 300; /* Lighter weight for CTA text */
+}
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+}
+/* Ensure CTA buttons use light styling */
+.cta .btn-primary {
+    background-color: white;
+    color: var(--primary);
+    border-color: white;
+}
+.cta .btn-primary:hover {
+    background-color: rgba(255,255,255,0.9);
+    color: var(--primary);
+}
+.cta .btn-outline {
+    border-color: white;
+    color: white;
+    background-color: rgba(255,255,255,0.1);
+}
+.cta .btn-outline:hover {
+    background-color: white;
+    color: var(--primary);
+}
+
+
+/* Footer */
+footer {
+    background-color: #f9f9f9; /* Light gray background */
+    padding: 6rem 0 2rem; /* More top padding */
+}
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Responsive columns */
+    gap: 4rem; /* Increased gap */
+    margin-bottom: 4rem;
+}
+.footer-column h4 {
+    color: var(--dark);
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem; /* Slightly larger footer heading */
+    font-weight: 600;
+    position: relative; /* For underline */
+}
+.footer-column h4:after { /* Underline accent */
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--primary);
+}
+.footer-column ul {
+    list-style: none;
+}
+.footer-column ul li {
+    margin-bottom: 0.75rem;
+}
+.footer-column a {
+    text-decoration: none;
+    color: #666;
+    transition: var(--transition);
+    font-size: 0.95rem;
+}
+.footer-column a:hover {
+    color: var(--primary);
+}
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+    color: #666;
+    font-size: 0.9rem;
+}
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem; /* Space from paragraph if present */
+}
+.social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dark);
+    transition: var(--transition);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+.social-icon:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
+/* Media Queries */
+@media (max-width: 1024px) { /* Tablet and smaller */
+    .city-title {
+        font-size: 3.5rem;
+    }
+    .city-overview {
+        flex-direction: column;
+    }
+    .itinerary-content {
+        flex-direction: column;
+    }
+    .practical-grid, .data-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .neighborhood-grid {
+        /* grid-template-columns: 1fr; */ /* Keep 2 columns if space allows or switch to 1 */
+         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 850px) { /* Smaller tablets / large phones */
+    .hamburger {
+        display: flex;
+    }
+    nav {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Off-screen initially */
+        width: 250px; /* Width of mobile menu */
+        height: 100vh;
+        background-color: var(--dark); /* Dark background for mobile menu */
+        padding: 80px 30px 30px; /* Padding for menu items */
+        z-index: 99; /* Below hamburger icon but above content */
+        box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+    }
+    nav.active { /* Slide in menu */
+        right: 0;
+    }
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .auth-buttons { /* This will style .mobile-auth inside nav */
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-top: 2rem;
+    }
+    .auth-buttons .btn { /* This will style .btn inside .mobile-auth */
+        width: 100%;
+        text-align: center;
+    }
+    .desktop-auth { /* Hide desktop auth buttons on mobile */
+        display: none;
+    }
+    /* Hamburger animation */
+    .hamburger.active span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
+    .city-title {
+        font-size: 3rem;
+    }
+    .city-tagline {
+        max-width: 100%; /* Allow tagline to use full width */
+    }
+    .insights-grid {
+        grid-template-columns: 1fr; /* Stack insight cards */
+    }
+    .activity-row { /* If using this class, adjust for mobile */
+        flex-direction: column;
+    }
+    .activity-image-container {
+        flex: 0 0 200px; /* Fixed height for image container */
+    }
+    .quick-nav-container {
+        flex-direction: column;
+        align-items: stretch; /* Make nav-links full width */
+        padding: 1rem;
+    }
+    .nav-links {
+        justify-content: center; /* Center tabs if they don't fill width */
+        padding: 1rem 0;
+    }
+    .quick-actions {
+        margin-top: 1rem;
+        border-left: none;
+        padding-left: 0;
+        width: 100%;
+        justify-content: center;
+        padding-top: 1rem;
+        border-top: 1px solid #eee;
+    }
+}
+
+@media (max-width: 768px) { /* Mobile devices */
+    .city-hero {
+        padding: 10rem 0 4rem;
+        height: auto; /* Auto height for hero on small screens */
+    }
+    .city-title {
+        font-size: 2.5rem;
+    }
+    .practical-grid, .data-grid {
+        grid-template-columns: 1fr; /* Stack cards */
+    }
+    .insights-grid {
+        grid-template-columns: 1fr;
+    }
+    .cta-buttons {
+        flex-direction: column;
+        max-width: 300px; /* Limit width of button column */
+        margin: 0 auto;
+    }
+     .footer-content {
+        grid-template-columns: 1fr; /* Stack footer columns */
+        gap: 2.5rem;
+    }
+    .footer-column h4 {
+        margin-bottom: 1rem;
+    }
+    .footer-column h4:after {
+        bottom: -5px;
+    }
+}
+
+@media (max-width: 576px) { /* Smaller mobile devices */
+    .city-quick-stats {
+        flex-wrap: wrap; /* Allow stats to wrap */
+        gap: 1.5rem;
+        justify-content: space-around; /* Distribute stats */
+    }
+    .stat-item {
+        align-items: center; /* Center stat items */
+    }
+    .city-actions {
+        flex-direction: column; /* Stack action buttons */
+    }
+    .section-title {
+        font-size: 2rem;
+    }
+    .neighborhood-grid {
+        grid-template-columns: 1fr; /* Stack neighborhood cards */
+    }
+    .insights-tabs {
+        padding: 0.3rem;
+    }
+    .insights-tab {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* Define --secondary-rgb if not already defined, for the CTA gradient */
+:root {
+    --secondary-rgb: 44, 62, 80; /* Corresponds to #2c3e50 */
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <a href="#" class="logo">
+                    <h1>FreeThingsToDo</h1>
+                </a>
+                
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Browse by City</a></li>
+                        <li><a href="#">Submit Activity</a></li>
+                        <li><a href="#">About</a></li>
+                    </ul>
+                     <div class="auth-buttons mobile-auth" style="display:none"> <a href="#" class="btn btn-outline">Log In</a>
+                        <a href="#" class="btn btn-primary">Sign Up</a>
+                    </div>
+                </nav>
+                
+                <div class="auth-buttons desktop-auth"> <a href="#" class="btn btn-outline">Log In</a>
+                    <a href="#" class="btn btn-primary">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <section class="city-hero">
+        <div class="container city-info-container">
+            <div class="breadcrumb">
+                <a href="#">Home</a>
+                <span class="separator">/</span>
+                <a href="#">USA</a>
+                <span class="separator">/</span>
+                <a href="#">California</a>
+                <span class="separator">/</span>
+                <span>Redwood City</span>
+            </div>
+            
+            <h1 class="city-title">Redwood City</h1>
+            <p class="city-tagline">Silicon Valley's Historic Peninsula Hub</p>
+            
+            <div class="city-quick-stats">
+                <div class="stat-item">
+                    <span class="stat-value">86,754</span>
+                    <span class="stat-label">Population (2023)</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">19.4 mi²</span>
+                    <span class="stat-label">Area</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">4.7 ★</span>
+                    <span class="stat-label">Visitor Rating</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">25 mi</span>
+                    <span class="stat-label">From San Francisco</span>
+                </div>
+            </div>
+            
+            <div class="city-actions">
+                <a href="#" class="btn btn-primary btn-icon">
+                    <span class="icon">♥</span> Save to Favorites
+                </a>
+                <a href="#" class="btn btn-outline btn-icon">
+                    <span class="icon">⟳</span> Share
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <div class="container">
+        <div class="quick-nav">
+            <div class="quick-nav-container">
+                <ul class="nav-links">
+                    <li><a href="#overview" class="active">Overview</a></li>
+                    <li><a href="#activities">Free Things To Do</a></li>
+                    <li><a href="#itineraries">Itineraries</a></li>
+                    <li><a href="#neighborhoods">Neighborhoods</a></li>
+                    <li><a href="#practical-info">City Info</a></li> <li><a href="#nearby">Nearby Cities</a></li>
+                </ul>
+                
+                <div class="quick-actions">
+                    <a href="#" class="btn btn-primary btn-icon">
+                        <span class="icon">▶</span> Plan Your Trip
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <section id="overview">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">City Overview</h2>
+                <p class="section-subtitle">Discover what makes Redwood City a unique destination on the San Francisco Peninsula.</p>
+            </div>
+            
+            <div class="city-overview">
+                <div class="overview-content">
+                    <p>Situated at the heart of the San Francisco Peninsula, Redwood City offers a perfect blend of Silicon Valley innovation and rich California history. Named for the redwood lumber that was once shipped through its port, this vibrant city has emerged as a cultural and technological hub with a warm Mediterranean climate.</p>
+                    
+                    <p>The city's historic downtown features a beautifully restored courthouse and a lively theater scene, making it a popular destination for both residents and visitors. With its motto "Climate Best By Government Test" — the city enjoys sunny days perfect for exploring its numerous parks, trails, and bay shoreline.</p>
+                </div>
+                
+                <div class="overview-sidebar">
+                    <div class="sidebar-card" style="margin-top: 0;">
+                        <div class="sidebar-card-header">
+                            <h3>Essential Information</h3>
+                        </div>
+                        <div class="sidebar-card-body" style="padding: 1rem;">
+                            <ul class="info-list" style="font-size: 0.9rem;">
+                                <li style="padding: 0.5rem 0;">
+                                    <span class="info-label">Best Time to Visit</span>
+                                    <span class="info-value">Apr-Oct</span>
+                                </li>
+                                <li style="padding: 0.5rem 0;">
+                                    <span class="info-label">Closest Airport</span>
+                                    <span class="info-value">SFO (9 miles)</span>
+                                </li>
+                                <li style="padding: 0.5rem 0;">
+                                    <span class="info-label">Public Transit</span>
+                                    <span class="info-value">CalTrain, SamTrans</span>
+                                </li>
+                                <li style="padding: 0.5rem 0;">
+                                    <span class="info-label">Walkability Score</span>
+                                    <span class="info-value">76/100</span>
+                                </li>
+                                <li style="padding: 0.5rem 0;">
+                                    <span class="info-label">Avg. Summer High</span>
+                                    <span class="info-value">78°F (25°C)</span>
+                                </li>
+                                <li style="padding: 0.5rem 0;">
+                                    <span class="info-label">Avg. Winter Low</span>
+                                    <span class="info-value">42°F (5°C)</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="activities-map">
+        <div class="container">
+            <div class="map-container">
+                <h3 class="map-title">Explore Free Activities in Redwood City</h3>
+                <div class="map-wrapper">
+                    <img src="https://placehold.co/1200x500/e9ecef/333333?text=Redwood+City+Map+Placeholder" alt="Map of Redwood City Activities" class="activities-map-image" onerror="this.onerror=null;this.src='https://placehold.co/1200x500/e9ecef/333333?text=Map+Error';">
+                    <div class="map-overlay">
+                        <div class="map-pin" style="top: 40%; left: 50%;">
+                            <div class="map-pin-dot"></div>
+                            <div class="map-pin-label">Downtown</div>
+                        </div>
+                        <div class="map-pin" style="top: 30%; left: 30%;">
+                            <div class="map-pin-dot" style="background-color: #e67e22;"></div> <div class="map-pin-label">Edgewood Park</div>
+                        </div>
+                        <div class="map-pin" style="top: 60%; left: 70%;">
+                            <div class="map-pin-dot" style="background-color: #27ae60;"></div> <div class="map-pin-label">Marina & Bair Island</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="map-legend">
+                    <div class="legend-item"><span class="legend-dot legend-outdoor"></span><span class="legend-text">Outdoor</span></div>
+                    <div class="legend-item"><span class="legend-dot legend-cultural"></span><span class="legend-text">Cultural</span></div>
+                    <div class="legend-item"><span class="legend-dot legend-events"></span><span class="legend-text">Events</span></div>
+                    <div class="legend-item"><span class="legend-dot legend-nature"></span><span class="legend-text">Nature</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="activities">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Free Things To Do in Redwood City</h2>
+                <p class="section-subtitle">Explore the best cost-free activities and attractions in Redwood City.</p>
+            </div>
+            
+            <div class="activities-container">
+                <div class="category-tabs">
+                    <div class="category-tab active" data-category="all">All Activities</div>
+                    <div class="category-tab" data-category="outdoor">Outdoor</div>
+                    <div class="category-tab" data-category="cultural">Cultural</div>
+                    <div class="category-tab" data-category="events">Community Events</div>
+                    <div class="category-tab" data-category="nature">Nature & Wildlife</div>
+                </div>
+                
+                <div class="activities-category" data-content-category="outdoor">
+                    <div class="category-header"><h3 class="category-title">Outdoor Activities</h3></div>
+                    <table class="activities-table">
+                        <thead><tr><th style="width: 40%;">Activity</th><th style="width: 60%;">Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><div class="activity-name">Redwood City Parks</div></td><td class="activity-description-cell">Explore local parks like Stafford Park, Red Morton Park, or Stulsaft Park, which offer walking trails, picnic areas, and playgrounds.</td></tr>
+                            <tr><td><div class="activity-name">Edgewood Park & Natural Preserve</div></td><td class="activity-description-cell">Hike through scenic trails and enjoy wildflower displays (free parking on weekdays, small fee on weekends).</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="activities-category" data-content-category="cultural">
+                    <div class="category-header"><h3 class="category-title">Cultural and Historical Activities</h3></div>
+                    <table class="activities-table">
+                         <thead><tr><th style="width: 40%;">Activity</th><th style="width: 60%;">Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><div class="activity-name">San Mateo County History Museum</div></td><td class="activity-description-cell">Located in the historic courthouse, this museum offers free admission on the first Friday of every month.</td></tr>
+                            <tr><td><div class="activity-name">Public Art Walk</div></td><td class="activity-description-cell">Explore Redwood City's downtown area to see murals, sculptures, and other public art installations.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                 <div class="activities-category" data-content-category="events">
+                    <div class="category-header"><h3 class="category-title">Community Events</h3></div>
+                    <table class="activities-table">
+                        <thead><tr><th style="width: 40%;">Activity</th><th style="width: 60%;">Description</th></tr></thead>
+                        <tbody>
+                            <tr><td><div class="activity-name">Concerts in the Park</div></td><td class="activity-description-cell">During the summer, enjoy free outdoor concerts at Courthouse Square.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="activities-category" data-content-category="nature">
+                    <div class="category-header"><h3 class="category-title">Nature and Wildlife</h3></div>
+                    <table class="activities-table">
+                        <thead><tr><th style="width: 40%;">Activity</th><th style="width: 60%;">Description</th></tr></thead>
+                        <tbody>
+                             <tr><td><div class="activity-name">Bair Island Aquatic Center Trails</div></td><td class="activity-description-cell">Walk or bike along the trails and enjoy views of the wetlands and wildlife.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="itineraries" class="itineraries">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Suggested Itineraries</h2>
+                <p class="section-subtitle">Ready-made plans to help you make the most of your visit to Redwood City.</p>
+            </div>
+            
+            <div class="itinerary-tabs">
+                <div class="itinerary-tab active" data-itinerary="half-day">Half-Day Explorer</div>
+                <div class="itinerary-tab" data-itinerary="full-day">Full Day Adventure</div>
+                <div class="itinerary-tab" data-itinerary="family-fun">Family Fun Day</div>
+            </div>
+            
+            <div class="itinerary-content active" id="itinerary-half-day">
+                <div class="itinerary-map">
+                    <img src="https://placehold.co/600x400/ddeeff/333333?text=Half-Day+Map" alt="Itinerary Map" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Map+Error';">
+                </div>
+                <div class="itinerary-details">
+                    <h3 style="margin-bottom: 1.5rem;">Half-Day Explorer: Downtown Highlights</h3>
+                     <ul class="itinerary-timeline">
+                        <li class="itinerary-item"><div class="itinerary-time">9:00 AM</div><h4 class="itinerary-item-title">Courthouse Square</h4><p class="itinerary-description">Admire historic architecture.</p></li>
+                        <li class="itinerary-item"><div class="itinerary-time">10:00 AM</div><h4 class="itinerary-item-title">History Museum</h4><p class="itinerary-description">Explore local history.</p></li>
+                    </ul>
+                </div>
+            </div>
+             <div class="itinerary-content" id="itinerary-full-day" style="display:none;">
+                <div class="itinerary-map">
+                     <img src="https://placehold.co/600x400/ddefdd/333333?text=Full-Day+Map" alt="Itinerary Map" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Map+Error';">
+                </div>
+                <div class="itinerary-details">
+                    <h3 style="margin-bottom: 1.5rem;">Full Day Adventure: City & Nature</h3>
+                     <ul class="itinerary-timeline">
+                        <li class="itinerary-item"><div class="itinerary-time">9:00 AM</div><h4 class="itinerary-item-title">Edgewood Park Hike</h4><p class="itinerary-description">Enjoy morning trails.</p></li>
+                        <li class="itinerary-item"><div class="itinerary-time">1:00 PM</div><h4 class="itinerary-item-title">Downtown Lunch & Museum</h4><p class="itinerary-description">Refuel and explore history.</p></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="itinerary-content" id="itinerary-family-fun" style="display:none;">
+                <div class="itinerary-map">
+                     <img src="https://placehold.co/600x400/ffeedd/333333?text=Family+Fun+Map" alt="Itinerary Map" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Map+Error';">
+                </div>
+                <div class="itinerary-details">
+                    <h3 style="margin-bottom: 1.5rem;">Family Fun Day: Parks & Play</h3>
+                     <ul class="itinerary-timeline">
+                        <li class="itinerary-item"><div class="itinerary-time">10:00 AM</div><h4 class="itinerary-item-title">Magical Bridge Playground</h4><p class="itinerary-description">Inclusive fun for all kids.</p></li>
+                        <li class="itinerary-item"><div class="itinerary-time">1:00 PM</div><h4 class="itinerary-item-title">Picnic at Red Morton Park</h4><p class="itinerary-description">Relax and play.</p></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="neighborhoods" class="neighborhoods">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Redwood City Neighborhoods</h2>
+                <p class="section-subtitle">Discover the diverse districts that give Redwood City its unique character.</p>
+            </div>
+            <div class="neighborhood-grid">
+                <div class="neighborhood-summary">
+                    <div class="neighborhood-icon">🏙️</div>
+                    <div class="neighborhood-content">
+                        <h3 class="neighborhood-name">Downtown</h3>
+                        <p class="neighborhood-description">Vibrant heart with historic sites, dining, and entertainment.</p>
+                        <div class="neighborhood-features"><span class="neighborhood-feature">Dining</span><span class="neighborhood-feature">Historic</span></div>
+                    </div>
+                </div>
+                <div class="neighborhood-summary">
+                    <div class="neighborhood-icon">🚢</div>
+                    <div class="neighborhood-content">
+                        <h3 class="neighborhood-name">Port Area / Bair Island</h3>
+                        <p class="neighborhood-description">Waterfront with trails and wildlife viewing opportunities.</p>
+                        <div class="neighborhood-features"><span class="neighborhood-feature">Nature</span><span class="neighborhood-feature">Waterfront</span></div>
+                    </div>
+                </div>
+                 <div class="neighborhood-summary">
+                    <div class="neighborhood-icon">⛰️</div>
+                    <div class="neighborhood-content">
+                        <h3 class="neighborhood-name">Emerald Hills</h3>
+                        <p class="neighborhood-description">Scenic hillside residential area with parks and views.</p>
+                        <div class="neighborhood-features"><span class="neighborhood-feature">Views</span><span class="neighborhood-feature">Residential</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="practical-info" class="practical-insights">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">City Information & Resources</h2>
+                <p class="section-subtitle">Essential details, data, and links to help you learn more about Redwood City.</p>
+            </div>
+            
+            <div class="insights-tabs-container">
+                <div class="insights-tabs">
+                    <button class="insights-tab active" data-tab="essential-info">Essential Info</button>
+                    <button class="insights-tab" data-tab="reference-links">Reference Links</button>
+                    <button class="insights-tab" data-tab="population-data">Population</button>
+                    <button class="insights-tab" data-tab="cultural-significance">Culture</button>
+                    <button class="insights-tab" data-tab="economic-indicators">Economy</button>
+                    <button class="insights-tab" data-tab="environmental-context">Environment</button> <button class="insights-tab" data-tab="urban-characteristics">Urban Layout</button> <button class="insights-tab" data-tab="local-tips">Local Tips</button>
+                </div>
+            </div>
+
+            <div class="insights-content-panel active" id="essential-info-panel">
+                <div class="practical-grid">
+                    <div class="info-card">
+                        <div class="info-card-header"><div class="info-icon">🚍</div><h3>Getting There & Around</h3></div>
+                        <div class="info-card-body">
+                            <p>Redwood City is accessible by car, train, and public transport.</p>
+                            <ul><li class="bullet-item">SFO Airport: 9 miles north</li><li class="bullet-item">CalTrain: Downtown station</li></ul>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-header"><div class="info-icon">📅</div><h3>Best Times to Visit</h3></div>
+                        <div class="info-card-body">
+                            <p>Enjoyable year-round, with distinct seasonal advantages.</p>
+                            <ul><li class="bullet-item">Apr-May: Wildflowers</li><li class="bullet-item">Jun-Aug: Outdoor events</li></ul>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-header"><div class="info-icon">📱</div><h3>Useful Apps & Websites</h3></div>
+                        <div class="info-card-body">
+                            <p>Digital resources for your visit.</p>
+                            <ul><li class="bullet-item">Redwood City Events Calendar</li><li class="bullet-item">CalTrain Mobile App</li></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insights-content-panel" id="reference-links-panel">
+                <div class="data-grid">
+                    <div class="data-card">
+                        <div class="data-card-header"><div class="data-icon">🔗</div><h3>Reference Links</h3></div>
+                        <div class="data-card-body">
+                            <ul>
+                                <li><strong>OpenStreetMap:</strong> ID <a href="https://www.openstreetmap.org/relation/123456" target="_blank">123456</a> | <a href="https://www.openstreetmap.org/relation/123456" target="_blank">View Map</a></li>
+                                <li><strong>Wikipedia:</strong> Page ID <a href="https://en.wikipedia.org/?curid=67890" target="_blank">67890</a> | <a href="https://en.wikipedia.org/wiki/Redwood_City,_California" target="_blank">Read Article</a></li>
+                                <li><strong>Wikivoyage:</strong> <a href="https://en.wikivoyage.org/wiki/Redwood_City" target="_blank">Travel Guide</a> (if available)</li>
+                                <li><strong>Wikidata:</strong> Entity ID <a href="https://www.wikidata.org/wiki/Q45678" target="_blank">Q45678</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insights-content-panel" id="population-data-panel">
+                <div class="data-grid">
+                    <div class="data-card">
+                        <div class="data-card-header"><div class="data-icon">📊</div><h3>Population Data</h3></div>
+                        <div class="data-card-body">
+                            <ul>
+                                <li><strong>Latest Population (2023):</strong> 86,754</li>
+                                <li><strong>Population Growth Rate:</strong> Approx. 0.5% annually (example)</li>
+                                <li><strong>Urban Area Population:</strong> ~85,000 (example)</li>
+                                <li><strong>Metropolitan Area (Part of SF Bay Area):</strong> ~7.7 million (example)</li>
+                                <li><strong>Population Density:</strong> ~4,472 per sq mi / ~1,727 per sq km (example)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insights-content-panel" id="cultural-significance-panel">
+                <div class="data-grid">
+                    <div class="data-card">
+                        <div class="data-card-header"><div class="data-icon">🎭</div><h3>Cultural Significance</h3></div>
+                        <div class="data-card-body">
+                            <ul>
+                                <li><strong>UNESCO Sites:</strong> None directly in Redwood City (Note: Many CA sites nearby)</li>
+                                <li><strong>Main Languages Spoken:</strong> English, Spanish, Chinese (Mandarin/Cantonese), Tagalog (example)</li>
+                                <li><strong>Major Cultural Districts:</strong> Downtown (Historic & Arts), Little Mexico (parts of North Fair Oaks - example)</li>
+                                <li><strong>Significant Annual Events:</strong> Salsa Festival, Music on the Square, Fourth of July Parade, Hometown Holidays (example)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insights-content-panel" id="economic-indicators-panel">
+                 <div class="data-grid">
+                    <div class="data-card">
+                        <div class="data-card-header"><div class="data-icon">📈</div><h3>Economic Indicators</h3></div>
+                        <div class="data-card-body">
+                            <ul>
+                                <li><strong>Primary Industries:</strong> Technology (Software, Biotech), Healthcare, Retail, Professional Services (example)</li>
+                                <li><strong>Development Classification:</strong> Developed / High-Income Economy (example)</li>
+                                <li><strong>Major Corporations Headquartered:</strong> Oracle, Electronic Arts (EA), Box Inc. (example)</li>
+                                <li><strong>Tourism Significance:</strong> Regional hub, business travel, gateway to Peninsula attractions (example)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insights-content-panel" id="environmental-context-panel">
+                <div class="data-grid">
+                    <div class="data-card">
+                        <div class="data-card-header"><div class="data-icon">☀️</div><h3>Environmental Context</h3></div>
+                        <div class="data-card-body">
+                            <ul>
+                                <li><strong>Climate Classification:</strong> Mediterranean (Köppen: Csb) (example)</li>
+                                <li><strong>Average Temperature Range (Annual):</strong> 42°F - 78°F (5°C - 25°C) (example)</li>
+                                <li><strong>Average Annual Rainfall:</strong> ~20 inches (508 mm) (example)</li>
+                                <li><strong>Notable Natural Features:</strong> Proximity to San Francisco Bay, Redwood Shores Lagoon system, nearby Santa Cruz Mountains (example)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insights-content-panel" id="urban-characteristics-panel">
+                <div class="data-grid">
+                    <div class="data-card">
+                        <div class="data-card-header"><div class="data-icon">🏘️</div><h3>Urban Characteristics</h3></div>
+                        <div class="data-card-body">
+                            <ul>
+                                <li><strong>Urban Layout Type:</strong> Mix of grid (Downtown) and suburban curvilinear (example)</li>
+                                <li><strong>Public Transportation Systems:</strong> CalTrain (commuter rail), SamTrans (bus), Redwood City Ferry Terminal (seasonal) (example)</li>
+                                <li><strong>Major Landmarks:</strong> San Mateo County History Museum (Historic Courthouse), Fox Theatre, Port of Redwood City, Oracle Headquarters (example)</li>
+                                <li><strong>Airport Information:</strong> Nearest major: San Francisco Int'l (SFO) - 9 miles. San Carlos Airport (SQL) for general aviation. (example)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="insights-content-panel" id="local-tips-panel">
+                <div class="section-header" style="margin-top: 0; margin-bottom: 1.5rem;"> <h3 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Local Insights & Hidden Gems</h3>
+                    <p style="font-size: 1rem; color: #666;">Tips from residents and frequent visitors.</p>
+                </div>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <div class="insight-content"><h3>Stulsaft Park</h3><p>A hidden gem for families and dog walkers, offering trails and off-leash areas.</p></div>
+                    </div>
+                    <div class="insight-card">
+                        <div class="insight-content"><h3>Magical Bridge Playground</h3><p>In Red Morton Park, an inclusive playground for all abilities.</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="nearby">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nearby Cities</h2>
+                <p class="section-subtitle">Explore more destinations within easy reach of Redwood City.</p>
+            </div>
+            <div class="related-cities-carousel-wrapper"> <div class="related-cities-carousel">
+                    <div class="related-city-card">
+                        <div class="related-city-image" style="background-image: url('https://placehold.co/400x200/aabbcc/ffffff?text=San+Francisco')" onerror="this.style.backgroundImage='url(\'https://placehold.co/400x200/cccccc/333333?text=Image+Error\')'"></div>
+                        <div class="related-city-content"><h3>San Francisco</h3><p>Iconic city with famous attractions.</p><div class="city-distance">25 miles north</div></div>
+                    </div>
+                    <div class="related-city-card">
+                        <div class="related-city-image" style="background-image: url('https://placehold.co/400x200/bbaacc/ffffff?text=Palo+Alto')" onerror="this.style.backgroundImage='url(\'https://placehold.co/400x200/cccccc/333333?text=Image+Error\')'"></div>
+                        <div class="related-city-content"><h3>Palo Alto</h3><p>Home to Stanford University and tech.</p><div class="city-distance">7 miles south</div></div>
+                    </div>
+                    <div class="related-city-card">
+                        <div class="related-city-image" style="background-image: url('https://placehold.co/400x200/ccaabb/ffffff?text=Half+Moon+Bay')" onerror="this.style.backgroundImage='url(\'https://placehold.co/400x200/cccccc/333333?text=Image+Error\')'"></div>
+                        <div class="related-city-content"><h3>Half Moon Bay</h3><p>Charming coastal town with beaches.</p><div class="city-distance">14 miles west</div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <button class="carousel-control prev" aria-label="Previous Cities">←</button>
+                <button class="carousel-control next" aria-label="Next Cities">→</button>
+            </div>
+        </div>
+    </section>
+    
+    <div class="container">
+        <section class="cta">
+            <h2>Plan Your Visit to Redwood City</h2>
+            <p>Ready to explore? Start planning your itinerary and discover all that Redwood City has to offer.</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary btn-icon"><span class="icon">🗺️</span>Create Custom Itinerary</a>
+                <a href="#activities" class="btn btn-outline btn-icon"><span class="icon">💡</span>View Free Activities</a>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>FreeThingsToDo</h4>
+                    <p style="font-size: 0.9rem; color: #555; line-height: 1.5;">Your guide to free activities, attractions, and events in cities worldwide.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon" aria-label="Facebook">f</a> <a href="#" class="social-icon" aria-label="Twitter">t</a> <a href="#" class="social-icon" aria-label="Instagram">in</a>
+                    </div>
+                </div>
+                <div class="footer-column"><h4>Explore</h4><ul><li><a href="#">Popular Cities</a></li><li><a href="#">Categories</a></li></ul></div>
+                <div class="footer-column"><h4>Community</h4><ul><li><a href="#">Submit Activity</a></li><li><a href="#">Forum</a></li></ul></div>
+                <div class="footer-column"><h4>Support</h4><ul><li><a href="#">Help Center</a></li><li><a href="#">About Us</a></li></ul></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; <span id="currentYear"></span> FreeThingsToDo. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Hamburger menu functionality
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('nav');
+        const body = document.body;
+        const mobileAuthButtonsContainer = nav.querySelector('.auth-buttons.mobile-auth'); // Get the container in nav
+        const desktopAuthButtons = document.querySelector('.auth-buttons.desktop-auth');
+
+        if (hamburger && nav) {
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                nav.classList.toggle('active');
+                body.classList.toggle('menu-open');
+                // Toggle display of mobile auth buttons when menu opens/closes
+                if (mobileAuthButtonsContainer) {
+                    mobileAuthButtonsContainer.style.display = nav.classList.contains('active') ? 'flex' : 'none';
+                }
+            });
+            
+            // Ensure mobile auth buttons are correctly set up inside nav for mobile view
+            if (mobileAuthButtonsContainer && desktopAuthButtons) {
+                // Clear any existing buttons in mobileAuthButtonsContainer before cloning
+                // This is to prevent duplication if this script runs multiple times or DOM is manipulated elsewhere.
+                while (mobileAuthButtonsContainer.firstChild) {
+                    mobileAuthButtonsContainer.removeChild(mobileAuthButtonsContainer.firstChild);
+                }
+                // Clone desktop buttons to mobile container
+                desktopAuthButtons.querySelectorAll('.btn').forEach(button => {
+                    mobileAuthButtonsContainer.appendChild(button.cloneNode(true));
+                });
+            }
+
+
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 850) { // Only close on link click for mobile
+                        hamburger.classList.remove('active');
+                        nav.classList.remove('active');
+                        body.classList.remove('menu-open');
+                         if (mobileAuthButtonsContainer) { // Hide mobile auth buttons when menu closes
+                            mobileAuthButtonsContainer.style.display = 'none';
+                        }
+                    }
+                });
+            });
+
+            document.addEventListener('click', function(event) {
+                if (nav.classList.contains('active') && !hamburger.contains(event.target) && !nav.contains(event.target)) {
+                    hamburger.classList.remove('active');
+                    nav.classList.remove('active');
+                    body.classList.remove('menu-open');
+                    if (mobileAuthButtonsContainer) { // Hide mobile auth buttons when menu closes
+                        mobileAuthButtonsContainer.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#' || href.startsWith('#!') ) return; // Exclude empty hashes or SPA-like routes
+
+                const targetElement = document.querySelector(href);
+                if (targetElement) {
+                    e.preventDefault();
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // If it's a quick nav link, update active state
+                    if (this.closest('.nav-links')) {
+                        document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
+                        this.classList.add('active');
+                    }
+                }
+            });
+        });
+        
+        // Tab functionality for Practical Info / Insights
+        const insightsTabs = document.querySelectorAll('.insights-tab');
+        const insightsPanels = document.querySelectorAll('.insights-content-panel');
+
+        insightsTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                insightsTabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+
+                const targetPanelId = this.getAttribute('data-tab') + '-panel';
+                insightsPanels.forEach(panel => {
+                    if (panel.id === targetPanelId) {
+                        panel.classList.add('active');
+                    } else {
+                        panel.classList.remove('active');
+                    }
+                });
+            });
+        });
+
+        // Tab functionality for Activity Categories
+        const categoryTabs = document.querySelectorAll('.category-tab');
+        const activityCategories = document.querySelectorAll('.activities-category');
+
+        categoryTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                categoryTabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                const filterCategory = this.getAttribute('data-category');
+
+                activityCategories.forEach(category => {
+                    if (filterCategory === 'all' || category.getAttribute('data-content-category') === filterCategory) {
+                        category.style.display = 'block';
+                    } else {
+                        category.style.display = 'none';
+                    }
+                });
+            });
+        });
+         // Initialize: show all categories if "All Activities" is default active
+        if (document.querySelector('.category-tab.active[data-category="all"]')) {
+            activityCategories.forEach(category => category.style.display = 'block');
+        }
+
+
+        // Tab functionality for Itineraries
+        const itineraryTabs = document.querySelectorAll('.itinerary-tab');
+        const itineraryContents = document.querySelectorAll('.itinerary-content');
+
+        itineraryTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                itineraryTabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                const targetItineraryId = 'itinerary-' + this.getAttribute('data-itinerary');
+                
+                itineraryContents.forEach(content => {
+                    if (content.id === targetItineraryId) {
+                        content.style.display = 'flex'; // Or 'block' depending on layout
+                        content.classList.add('active');
+                    } else {
+                        content.style.display = 'none';
+                        content.classList.remove('active');
+                    }
+                });
+            });
+        });
+
+
+        // Carousel functionality
+        const setupCarousel = (carouselSelector, prevSelector, nextSelector) => {
+            const carousel = document.querySelector(carouselSelector);
+            const prevButton = document.querySelector(prevSelector);
+            const nextButton = document.querySelector(nextSelector);
+
+            if (carousel && prevButton && nextButton) {
+                const scrollAmount = () => {
+                    // Calculate based on the first child's width plus gap
+                    const firstCard = carousel.querySelector('.related-city-card');
+                    if (!firstCard) return 280; // Default scroll amount
+                    const cardStyle = window.getComputedStyle(firstCard);
+                    const cardMargin = parseFloat(cardStyle.marginLeft) + parseFloat(cardStyle.marginRight);
+                    // Ensure gap is a number, default to 0 if parsing fails or it's not set
+                    const gapStyle = window.getComputedStyle(carousel).gap;
+                    const gap = parseFloat(gapStyle) || 0; // Use 0 if gap is 'normal' or not a number
+                    return firstCard.offsetWidth + cardMargin + gap;
+                };
+
+
+                prevButton.addEventListener('click', () => {
+                    carousel.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+                });
+
+                nextButton.addEventListener('click', () => {
+                    carousel.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+                });
+            }
+        };
+        setupCarousel('.related-cities-carousel', '.carousel-control.prev', '.carousel-control.next');
+        
+        // Set current year in footer
+        const currentYearSpan = document.getElementById('currentYear');
+        if (currentYearSpan) {
+            currentYearSpan.textContent = new Date().getFullYear();
+        }
+
+        // Active link highlighting for quick nav on scroll
+        const quickNavLinks = document.querySelectorAll('.quick-nav .nav-links a');
+        const sections = Array.from(quickNavLinks).map(link => {
+            const id = link.getAttribute('href');
+            if (id && id.startsWith('#') && id.length > 1) { // Ensure it's a valid ID selector
+                 return document.querySelector(id);
+            }
+            return null;
+        }).filter(section => section !== null); // Filter out nulls if any link doesn't point to a valid section
+
+        function changeNavOnScroll() {
+            let index = sections.length;
+
+            while(--index >= 0 && window.scrollY + 100 < sections[index].offsetTop) {} // 100px offset, ensure index doesn't go below 0
+            
+            quickNavLinks.forEach((link) => link.classList.remove('active'));
+            // Ensure the link exists before trying to add 'active' class
+            if(quickNavLinks[index]) { // Check if quickNavLinks[index] is valid
+                 quickNavLinks[index].classList.add('active');
+            }
+        }
+
+        // Initial call to set active link based on page load position (e.g. if linked with hash)
+        if (sections.length > 0) { // Only run if there are sections to monitor
+          changeNavOnScroll();
+          window.addEventListener('scroll', changeNavOnScroll);
+        }
+    });
+    </script>
+</body>
+</html>
+

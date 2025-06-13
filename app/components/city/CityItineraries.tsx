@@ -1,75 +1,102 @@
+'use client';
+
 import { FC, useState } from 'react';
-import { itineraries } from '../../data/itineraries';
+
+interface ItineraryItem {
+  time: string;
+  title: string;
+  description: string;
+}
+
+interface Itinerary {
+  id: string;
+  title: string;
+  description: string;
+  items: ItineraryItem[];
+}
 
 interface CityItinerariesProps {
   formattedCityName: string;
+  itinerariesData: Itinerary[];
 }
 
-const CityItineraries: FC<CityItinerariesProps> = ({ formattedCityName }) => {
-  const [activeItinerary, setActiveItinerary] = useState(itineraries[0].id);
+const CityItineraries: FC<CityItinerariesProps> = ({ formattedCityName, itinerariesData }) => {
+  const [activeItineraryId, setActiveItineraryId] = useState(itinerariesData[0]?.id || '');
+
+  if (!itinerariesData) {
+    return null;
+  }
+
+  const activeItinerary = itinerariesData.find(itinerary => itinerary.id === activeItineraryId) || itinerariesData[0];
 
   return (
-    <section id="itineraries" className="py-12 bg-gray-100">
+    <section id="itineraries" className="itineraries py-12 bg-gray-100">
       <div className="container mx-auto px-4">
         <div className="section-header mb-12">
-          <h2 className="section-title text-4xl font-semibold mb-4">Suggested Itineraries</h2>
+          <h2 className="section-title text-4xl font-semibold mb-4">
+            Suggested Itineraries for {formattedCityName}
+          </h2>
           <p className="section-subtitle text-gray-600">
-            Ready-made plans to help you make the most of your visit to {formattedCityName}.
+            Explore our curated itineraries to make the most of your time in {formattedCityName}.
           </p>
         </div>
 
-        <div className="itinerary-tabs flex gap-8 border-b border-gray-200 mb-8">
-          {itineraries.map(itinerary => (
-            <button
-              key={itinerary.id}
-              className={`itinerary-tab py-4 font-medium text-gray-600 relative cursor-pointer transition-colors hover:text-primary ${
-                activeItinerary === itinerary.id ? 'text-primary' : ''
-              }`}
-              onClick={() => setActiveItinerary(itinerary.id)}
-            >
-              {itinerary.title.split(':')[0]}
-              {activeItinerary === itinerary.id && (
-                <div className="absolute bottom-0 left-0 w-full h-0.5 bg-primary"></div>
-              )}
-            </button>
-          ))}
-        </div>
+        <div className="itinerary-tabs flex overflow-x-auto whitespace-nowrap border-b border-gray-200 mb-8 gap-6 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+  {itinerariesData.map((itinerary) => (
+    <div 
+      key={itinerary.id}
+      className={`itinerary-tab py-4 font-medium cursor-pointer relative whitespace-nowrap ${
+        activeItineraryId === itinerary.id 
+          ? 'text-primary' 
+          : 'text-gray-600'
+      }`}
+      onClick={() => setActiveItineraryId(itinerary.id)}
+    >
+      {itinerary.title}
+      {activeItineraryId === itinerary.id && (
+        <div className="absolute bottom-0 left-0 w-full h-0.5 bg-primary"></div>
+      )}
+    </div>
+  ))}
+</div>
 
         <div className="itinerary-content flex gap-12">
-          <div className="itinerary-map flex-1 h-[400px] bg-gray-200 rounded-xl overflow-hidden">
-            <img
-              src="/images/demo-map.jpg"
-              alt="Itinerary Map"
+          <div className="itinerary-map flex-1 h-[400px] bg-gray-200 rounded-[16px] overflow-hidden">
+            <img 
+              src="https://placehold.co/600x400/ddeeff/333333?text=Itinerary+Map" 
+              alt="Itinerary Map" 
               className="w-full h-full object-cover"
-              onError={e => {
-                e.currentTarget.src =
-                  'https://placehold.co/600x400/3a8bbb/ffffff?text=Itinerary+Map';
-              }}
             />
           </div>
 
           <div className="itinerary-details flex-1">
-            {itineraries.map(itinerary => (
-              <div
-                key={itinerary.id}
-                className={`${activeItinerary === itinerary.id ? 'block' : 'hidden'}`}
-              >
-                <h3 className="text-2xl font-semibold mb-6">{itinerary.title}</h3>
-                <p className="text-gray-700 mb-8">{itinerary.description}</p>
+            <div className="mb-8">
+              <h3 className="text-2xl font-semibold mb-4 text-gray-900">
+                {activeItinerary.title}
+              </h3>
+              
+              <p className="text-gray-600 mb-6">
+                {activeItinerary.description}
+              </p>
 
-                <ul className="itinerary-timeline relative pl-8">
-                  <div className="absolute top-0 left-2 w-0.5 h-full bg-gray-200"></div>
-                  {itinerary.items.map((item, index) => (
-                    <li key={index} className="itinerary-item relative pb-8">
-                      <div className="absolute -left-8 top-0 w-4 h-4 rounded-full bg-primary border-4 border-white shadow-[0_0_0_2px_#3a8bbb]"></div>
-                      <div className="text-sm text-gray-600 mb-1">{item.time}</div>
-                      <h4 className="text-lg font-semibold mb-2">{item.title}</h4>
-                      <p className="text-gray-700 text-sm">{item.description}</p>
+              {activeItinerary.items && activeItinerary.items.length > 0 && (
+                <ul className="itinerary-timeline list-none relative pl-8">
+                  {activeItinerary.items.map((item, index) => (
+                    <li key={index} className="itinerary-item relative pb-8 last:pb-0">
+                      <div className="itinerary-time text-sm text-gray-600 mb-1">
+                        {item.time}
+                      </div>
+                      <h4 className="itinerary-item-title text-lg font-semibold mb-2 text-gray-900">
+                        {item.title}
+                      </h4>
+                      <p className="itinerary-description text-gray-600">
+                        {item.description}
+                      </p>
                     </li>
                   ))}
                 </ul>
-              </div>
-            ))}
+              )}
+            </div>
           </div>
         </div>
       </div>

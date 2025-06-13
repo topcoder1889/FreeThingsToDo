@@ -2,9 +2,22 @@ import { FC } from 'react';
 
 interface CityOverviewProps {
   formattedCityName: string;
+  overviewData: {
+    main_content: { [key: string]: string };
+    essential_info_card: {
+      best_time_to_visit: string;
+      closest_airport: string;
+      public_transit_options: string[];
+      walkability_score: string;
+      avg_summer_high_f: string;
+      avg_winter_low_f: string;
+    };
+  };
 }
 
-const CityOverview: FC<CityOverviewProps> = ({ formattedCityName }) => {
+const CityOverview: FC<CityOverviewProps> = ({ formattedCityName, overviewData }) => {
+  const paragraphs = Object.values(overviewData.main_content);
+
   return (
     <section id="overview" className="py-12">
       <div className="container mx-auto px-4">
@@ -16,20 +29,13 @@ const CityOverview: FC<CityOverviewProps> = ({ formattedCityName }) => {
           </p>
         </div>
 
-        <div className="flex gap-8 items-start mb-[-2rem]">
+        <div className="flex flex-col md:flex-row gap-8 items-start mb-[-2rem]">
           <div className="flex-[2]">
-            <p className="text-gray-700 mb-4 leading-relaxed">
-              Situated at the heart of the San Francisco Peninsula, {formattedCityName} offers a
-              perfect blend of Silicon Valley innovation and rich California history. Named for
-              the redwood lumber that was once shipped through its port, this vibrant city has
-              emerged as a cultural and technological hub with a warm Mediterranean climate.
-            </p>
-            <p className="text-gray-700 leading-relaxed">
-              The city's historic downtown features a beautifully restored courthouse and a lively
-              theater scene, making it a popular destination for both residents and visitors. With
-              its motto "Climate Best By Government Test" — the city enjoys sunny days perfect for
-              exploring its numerous parks, trails, and bay shoreline.
-            </p>
+            {paragraphs.map((paragraph, index) => (
+              <p key={index} className="text-gray-700 mb-4 leading-relaxed">
+                {paragraph}
+              </p>
+            ))}
           </div>
 
           <div className="flex-1">
@@ -41,27 +47,27 @@ const CityOverview: FC<CityOverviewProps> = ({ formattedCityName }) => {
                 <ul className="text-sm">
                   <li className="flex justify-between py-2 border-b border-gray-200 last:border-b-0">
                     <span className="text-gray-600">Best Time to Visit</span>
-                    <span className="font-medium">Apr-Oct</span>
+                    <span className="font-medium">{overviewData.essential_info_card.best_time_to_visit}</span>
                   </li>
                   <li className="flex justify-between py-2 border-b border-gray-200 last:border-b-0">
                     <span className="text-gray-600">Closest Airport</span>
-                    <span className="font-medium">SFO (9 miles)</span>
+                    <span className="font-medium">{overviewData.essential_info_card.closest_airport}</span>
                   </li>
                   <li className="flex justify-between py-2 border-b border-gray-200 last:border-b-0">
                     <span className="text-gray-600">Public Transit</span>
-                    <span className="font-medium">CalTrain, SamTrans</span>
+                    <span className="font-medium">{overviewData.essential_info_card.public_transit_options.join(', ')}</span>
                   </li>
                   <li className="flex justify-between py-2 border-b border-gray-200 last:border-b-0">
                     <span className="text-gray-600">Walkability Score</span>
-                    <span className="font-medium">76/100</span>
+                    <span className="font-medium">{overviewData.essential_info_card.walkability_score}/100</span>
                   </li>
                   <li className="flex justify-between py-2 border-b border-gray-200 last:border-b-0">
                     <span className="text-gray-600">Avg. Summer High</span>
-                    <span className="font-medium">78°F</span>
+                    <span className="font-medium">{overviewData.essential_info_card.avg_summer_high_f}</span>
                   </li>
                   <li className="flex justify-between py-2 border-b border-gray-200 last:border-b-0">
                     <span className="text-gray-600">Avg. Winter Low</span>
-                    <span className="font-medium">42°F</span>
+                    <span className="font-medium">{overviewData.essential_info_card.avg_winter_low_f}</span>
                   </li>
                 </ul>
               </div>

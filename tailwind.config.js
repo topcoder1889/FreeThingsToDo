@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      maxWidth: {
+        '7xl': '1340px',
+      },
       colors: {
         primary: '#3a8bbb',
         secondary: '#2c3e50',
@@ -20,6 +23,15 @@ module.exports = {
       },
       boxShadow: {
         custom: '0 8px 30px rgba(0,0,0,0.08)',
+      },
+      keyframes: {
+        fadeIn: {
+          'from': { opacity: '0', transform: 'translateY(10px)' },
+          'to': { opacity: '1', transform: 'translateY(0)' },
+        }
+      },
+      animation: {
+        fadeIn: 'fadeIn 0.5s ease-out',
       },
     },
   },

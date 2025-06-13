@@ -1,17 +1,67 @@
-import { getFreeActivitiesData } from '../../data/city-free-activities';
-import { useState } from 'react';
+// app/components/city/FreeActivities.tsx
+'use client';
+
+import { FC, useState } from 'react';
 import Link from 'next/link';
+
+interface Activity {
+  building_name: string;
+  activity_description: string;
+}
 
 interface FreeActivitiesProps {
   formattedCityName: string;
+  activitiesData: {
+    outdoor_activities: Activity[];
+    cultural_and_historical: Activity[];
+    community_events: Activity[];
+    nature_and_wildlife: Activity[];
+  };
+  cityId: number;
 }
 
-export default function FreeActivities({ formattedCityName }: FreeActivitiesProps) {
-  const { categories } = getFreeActivitiesData(formattedCityName);
-  const [activeCategory, setActiveCategory] = useState('All Activities');
+const FreeActivities: FC<FreeActivitiesProps> = ({ formattedCityName, activitiesData, cityId }) => {
+  const [activeTab, setActiveTab] = useState('all');
 
-  const formatTitleForUrl = (title: string) => {
-    return title.toLowerCase().replace(/\s+/g, '-');
+  const categories = [
+    {
+      id: 'all',
+      title: 'All Activities',
+      activities: [
+        ...activitiesData.outdoor_activities,
+        ...activitiesData.cultural_and_historical,
+        ...activitiesData.community_events,
+        ...activitiesData.nature_and_wildlife
+      ]
+    },
+    {
+      id: 'outdoor',
+      title: 'Outdoor',
+      activities: activitiesData.outdoor_activities
+    },
+    {
+      id: 'cultural',
+      title: 'Cultural',
+      activities: activitiesData.cultural_and_historical
+    },
+    {
+      id: 'community',
+      title: 'Community Events',
+      activities: activitiesData.community_events
+    },
+    {
+      id: 'nature',
+      title: 'Nature & Wildlife',
+      activities: activitiesData.nature_and_wildlife
+    }
+  ];
+
+  const filteredCategories = activeTab === 'all' 
+    ? categories.slice(1) // Show all categories except 'all'
+    : [categories.find(cat => cat.id === activeTab)!];
+
+  const formatActivityUrl = (activityName: string): string => {
+    return `/activity/${activityName.toLowerCase().replace(/ /g, '-')}`;
   };
 
   return (
@@ -27,68 +77,50 @@ export default function FreeActivities({ formattedCityName }: FreeActivitiesProp
         </div>
 
         <div className="activities-container">
-          <div className="flex gap-4 mb-8 overflow-x-auto pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-            <button
-              onClick={() => setActiveCategory('All Activities')}
-              className={`px-6 py-3 rounded-[50px] text-[0.95rem] font-medium transition-colors ${
-                activeCategory === 'All Activities'
-                  ? 'bg-primary text-white'
-                  : 'bg-accent text-gray-900 hover:bg-[#e5e5e5]'
-              }`}
-            >
-              All Activities
-            </button>
+          <div className="category-tabs flex gap-4 mb-8 overflow-x-auto pb-2 scrollbar-hide">
             {categories.map((category) => (
               <button
-                key={category.name}
-                onClick={() => setActiveCategory(category.name)}
-                className={`px-6 py-3 rounded-[50px] text-[0.95rem] font-medium transition-colors ${
-                  activeCategory === category.name
-                    ? 'bg-primary text-white'
-                    : 'bg-accent text-gray-900 hover:bg-[#e5e5e5]'
-                }`}
+                key={category.id}
+                onClick={() => setActiveTab(category.id)}
+                className={`category-tab px-6 py-3 rounded-full text-[0.95rem] font-medium whitespace-nowrap transition-all duration-300
+                  ${activeTab === category.id 
+                    ? 'bg-primary text-white' 
+                    : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
+                  }`}
               >
-                {category.name.split(' ')[0]}
+                {category.title}
               </button>
             ))}
           </div>
 
-          {categories.map((category) => (
-            <div
-              key={category.name}
-              className={`activities-category mb-10 ${
-                activeCategory !== 'All Activities' && activeCategory !== category.name ? 'hidden' : ''
-              }`}
-            >
-              <div className="category-header mb-4 pb-2 border-b-2 border-primary">
-                <h3 className="category-title text-2xl font-semibold text-primary">
-                  {category.name}
+          {filteredCategories.map((category) => (
+            <div key={category.id} className="activities-category mb-10">
+              <div className="category-header mb-4">
+                <h3 className="category-title text-xl font-semibold text-primary border-b-2 border-primary pb-2">
+                  {category.title}
                 </h3>
               </div>
-              <table className="w-full border-collapse bg-white rounded-xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
-                <thead className="bg-gray-100">
-                  <tr>
-                    <th className="w-[40%] text-left p-4 font-semibold text-gray-900 text-sm">
-                      Activity
-                    </th>
-                    <th className="w-[60%] text-left p-4 font-semibold text-gray-900 text-sm">
-                      Description
-                    </th>
+              
+              <table className="activities-table w-full border-collapse bg-white rounded-xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
+                <thead>
+                  <tr className="bg-gray-50">
+                    <th className="text-left p-4 font-semibold text-gray-900 w-[40%]">Activity</th>
+                    <th className="text-left p-4 font-semibold text-gray-900 w-[60%]">Description</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {category.activities.map((activity) => (
-                    <tr key={activity.id}>
-                      <td className="p-4 border-t border-gray-200">
-                        <Link
-                          href={`/activity/${formatTitleForUrl(activity.title)}`}
-                          className="font-semibold text-gray-900 hover:text-primary transition-colors"
+                  {category.activities.map((activity, index) => (
+                    <tr key={index} className="border-t border-gray-200 hover:bg-gray-50 transition-colors">
+                      <td className="p-4">
+                        <Link 
+                          href={formatActivityUrl(activity.building_name)}
+                          className="activity-name font-semibold text-gray-900 hover:text-primary transition-colors block"
                         >
-                          {activity.title}
+                          {activity.building_name}
                         </Link>
                       </td>
-                      <td className="p-4 border-t border-gray-200 text-gray-700 text-sm leading-relaxed">
-                        {activity.description}
+                      <td className="p-4 text-gray-600">
+                        {activity.activity_description}
                       </td>
                     </tr>
                   ))}
@@ -100,4 +132,6 @@ export default function FreeActivities({ formattedCityName }: FreeActivitiesProp
       </div>
     </section>
   );
-} 
+};
+
+export default FreeActivities;

@@ -1,12 +1,19 @@
-import { getCityHeroData } from '../../data/city-hero';
-
 interface CityHeroProps {
   formattedCityName: string;
+  heroData: {
+    city_name: string;
+    country: string;
+    state: string;
+    population: string;
+    area: string;
+    visitor_rating: string;
+    distance_from_major_city: string;
+    short_description: string;
+    hero_background_image_url: string;
+  };
 }
 
-export default function CityHero({ formattedCityName }: CityHeroProps) {
-  const heroData = getCityHeroData(formattedCityName);
-
+export default function CityHero({ formattedCityName, heroData }: CityHeroProps) {
   return (
     <section className="city-hero relative">
       <div
@@ -15,7 +22,7 @@ export default function CityHero({ formattedCityName }: CityHeroProps) {
           backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('https://res.cloudinary.com/simpleview/image/upload/v1529100229/clients/sanmateoca/Downtown_RedwoodCity_Sign_SanMateoCounty_SiliconValley_a6da8469-e804-4c8d-9f87-fe77c733c027.jpg')`,
         }}
       >
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 pt-16">
           <div className="max-w-3xl">
             <div className="flex gap-2 text-sm text-white/80 mb-6">
               <a href="/" className="text-white hover:underline">
@@ -23,11 +30,11 @@ export default function CityHero({ formattedCityName }: CityHeroProps) {
               </a>
               <span className="text-white/60">/</span>
               <a href="/countries" className="text-white hover:underline">
-                USA
+                {heroData.country}
               </a>
               <span className="text-white/60">/</span>
               <a href="/country/usa" className="text-white hover:underline">
-                California
+                {heroData.state}
               </a>
               <span className="text-white/60">/</span>
               <span className="text-white">{formattedCityName}</span>
@@ -36,13 +43,15 @@ export default function CityHero({ formattedCityName }: CityHeroProps) {
             <h1 className="text-6xl font-bold text-white mb-4 tracking-wide">
               {formattedCityName}
             </h1>
-            <p className="text-2xl font-light text-white/90 mb-8 max-w-[70%]">
-              {heroData.description}
+            <p className="text-2xl font-light text-white/90 mb-8">
+              {heroData.short_description}
             </p>
 
-            <div className="city-quick-stats flex flex-wrap gap-8 mb-10">
+            <div className="city-quick-stats flex flex-wrap gap-4 mb-10">
               <div className="stat-item flex flex-col">
-                <span className="stat-value text-3xl font-bold text-white">{heroData.population}</span>
+                <span className="stat-value text-3xl font-bold text-white">
+                  {heroData.population}
+                </span>
                 <span className="stat-label text-white/80 text-sm">Population</span>
               </div>
               <div className="stat-item flex flex-col">
@@ -50,11 +59,15 @@ export default function CityHero({ formattedCityName }: CityHeroProps) {
                 <span className="stat-label text-white/80 text-sm">Area</span>
               </div>
               <div className="stat-item flex flex-col">
-                <span className="stat-value text-3xl font-bold text-white">{heroData.visitorRating}</span>
+                <span className="stat-value text-3xl font-bold text-white">
+                  {heroData.visitor_rating}
+                </span>
                 <span className="stat-label text-white/80 text-sm">Visitor Rating</span>
               </div>
               <div className="stat-item flex flex-col">
-                <span className="stat-value text-3xl font-bold text-white">{heroData.distanceFromSF}</span>
+                <span className="stat-value text-3xl font-bold text-white">
+                  {heroData.distance_from_major_city}
+                </span>
                 <span className="stat-label text-white/80 text-sm">From San Francisco</span>
               </div>
             </div>
@@ -80,4 +93,4 @@ export default function CityHero({ formattedCityName }: CityHeroProps) {
       </div>
     </section>
   );
-};
+}
